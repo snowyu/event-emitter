@@ -1,6 +1,6 @@
 'use strict';
 
-var ee = require('../');
+var ee = require('../event-emitter');
 
 module.exports = function (t, a) {
 	var x, count, count2;
@@ -23,8 +23,8 @@ module.exports = function (t, a) {
 	t(x, 'foo');
 	x.emit('foo');
 	x.emit('bar');
-	a(count, 0, "All off: type");
-	a(count2, 2, "All off: ohter type");
+	a(count, 0, "foo off: type");
+	a(count2, 2, "foo off: ohter type");
 
 	count = 0;
 	count2 = 0;

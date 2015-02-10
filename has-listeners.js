@@ -10,7 +10,7 @@ module.exports = function (obj/*, type*/) {
 	value(obj);
 	type = arguments[1];
 	if (arguments.length > 1) {
-		return hasOwnProperty.call(obj, '__ee__') && Boolean(obj.__ee__[type]);
+		return hasOwnProperty.call(obj, '_events') && Boolean(obj._events[type]);
 	}
-	return obj.hasOwnProperty('__ee__') && !isEmpty(obj.__ee__);
+	return obj.hasOwnProperty('_events') && !isEmpty(obj._events);
 };

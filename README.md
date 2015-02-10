@@ -1,22 +1,55 @@
-# event-emitter
-## Environment agnostic event emitter
+### events-ex [![Build Status](https://img.shields.io/travis/snowyu/events-ex.js/master.png)](http://travis-ci.org/snowyu/events-ex.js) [![npm](https://img.shields.io/npm/v/events-ex.svg)](https://npmjs.org/package/events-ex) [![downloads](https://img.shields.io/npm/dm/events-ex.svg)](https://npmjs.org/package/events-ex) [![license](https://img.shields.io/npm/l/events-ex.svg)](https://npmjs.org/package/events-ex) 
 
-+ The Event Chain Supports 
+
+Browser-friendly enhanced events fully compatible with standard node.js and coffee-script. It's modified from [event-emitter](https://github.com/medikoo/event-emitter) mainly.
+
+
+### Difference with event-emitter and events
+
+- domain is not supported yet
++ The event object bubbling Supports 
   + the event object as listener's "this" object. 
-  + return the result property of event object to emitter object. 
+  + return the result property of event object to emitter.
   + prevent the rest of listener from be excuted if set the stopped property of event object to true 
++ add the defaultMaxListeners class property to keep compatible.
++ add the setMaxListeners method to keep compatible.
++ add `error`, `newListener` and `removeListener` events to keep compatible.
++ add listeners() method to keep compatible.
++ add listenerCount() class method to keep compatible.
 
 
 ### Installation
 
-	$ npm install event-emitter
+	$ npm install event-ex
 	
 To port it to Browser or any other (non CJS) environment, use your favorite CJS bundler. No favorite yet? Try: [Browserify](http://browserify.org/), [Webmake](https://github.com/medikoo/modules-webmake) or [Webpack](http://webpack.github.io/)
 
 ### Usage
 
+Node JS events Usage:
+
+```coffee
+
+EventEmitter = require('event-ex')
+inherits     = require('inherits-ex')
+
+# Demo the event object bubbling usage:
+class MyDb
+  inherits MyDb, EventEmitter
+  get: (key)->
+    result = @emit 'getting', key
+    if isObject result
+      return if result.state is ABORT
+      return result.result if result.state is DONE
+    _get(key)
+    
+```
+
+event-emitter usage:
+
 ```javascript
-var ee = require('event-emitter');
+
+var ee = require('event-ex/event-emitter');
 
 var emitter = ee({}), listener;
 
@@ -99,6 +132,4 @@ emitter1.emit('test'); // Invoked listener1, listener2, listener3 and listener4
 emitter2.emit('test'); // Invoked listener1, listener2, listener3 and listener4
 ```
 
-### Tests [![Build Status](https://travis-ci.org/medikoo/event-emitter.png)](https://travis-ci.org/medikoo/event-emitter)
 
-	$ npm test

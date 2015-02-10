@@ -1,6 +1,6 @@
 'use strict';
 
-var ee = require('../');
+var ee = require('../event-emitter');
 
 module.exports = function (t, a) {
 	var x = {}, y = {}, z = {}, count, count2, count3, pipe;

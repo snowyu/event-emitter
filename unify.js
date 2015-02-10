@@ -10,27 +10,27 @@ var forEach    = require('es5-ext/object/for-each')
 module.exports = function (e1, e2) {
 	var data;
 	(validValue(e1) && validValue(e2));
-	if (!hasOwnProperty.call(e1, '__ee__')) {
-		if (!hasOwnProperty.call(e2, '__ee__')) {
+	if (!hasOwnProperty.call(e1, '_events')) {
+		if (!hasOwnProperty.call(e2, '_events')) {
 			d.value = create(null);
-			defineProperty(e1, '__ee__', d);
-			defineProperty(e2, '__ee__', d);
+			defineProperty(e1, '_events', d);
+			defineProperty(e2, '_events', d);
 			d.value = null;
 			return;
 		}
-		d.value = e2.__ee__;
-		defineProperty(e1, '__ee__', d);
+		d.value = e2._events;
+		defineProperty(e1, '_events', d);
 		d.value = null;
 		return;
 	}
-	data = d.value = e1.__ee__;
-	if (!hasOwnProperty.call(e2, '__ee__')) {
-		defineProperty(e2, '__ee__', d);
+	data = d.value = e1._events;
+	if (!hasOwnProperty.call(e2, '_events')) {
+		defineProperty(e2, '_events', d);
 		d.value = null;
 		return;
 	}
-	if (data === e2.__ee__) return;
-	forEach(e2.__ee__, function (listener, name) {
+	if (data === e2._events) return;
+	forEach(e2._events, function (listener, name) {
 		if (!data[name]) {
 			data[name] = listener;
 			return;
@@ -45,6 +45,6 @@ module.exports = function (e1, e2) {
 			data[name] = [data[name], listener];
 		}
 	});
-	defineProperty(e2, '__ee__', d);
+	defineProperty(e2, '_events', d);
 	d.value = null;
 };

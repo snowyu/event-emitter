@@ -3,7 +3,7 @@
 // Benchmark comparing performance of event emit for many listeners
 // To run it, do following in memoizee package path:
 //
-// $ npm install eventemitter2 signals
+// $ npm install eventemitter2 signals event-emitter
 // $ node benchmark/many-on.js
 
 var forEach    = require('es5-ext/object/for-each')
@@ -12,10 +12,17 @@ var forEach    = require('es5-ext/object/for-each')
   , now = Date.now
 
   , time, count = 1000000, i, data = {}
-  , ee, native, ee2, signals, a = {}, b = {};
+  , eeX, ee, native, ee2, signals, a = {}, b = {};
+
+eeX = (function () {
+	var ee = require('../event-emitter')();
+	ee.on('test', function () { return arguments; });
+	ee.on('test', function () { return arguments; });
+	return ee.on('test', function () { return arguments; });
+}());
 
 ee = (function () {
-	var ee = require('../')();
+	var ee = require('event-emitter')();
 	ee.on('test', function () { return arguments; });
 	ee.on('test', function () { return arguments; });
 	return ee.on('test', function () { return arguments; });
@@ -51,9 +58,16 @@ console.log("Emit for 3 listeners", "x" + count + ":\n");
 i = count;
 time = now();
 while (i--) {
+	eeX.emit('test', a, b);
+}
+data["events-ex (this implementation)"] = now() - time;
+
+i = count;
+time = now();
+while (i--) {
 	ee.emit('test', a, b);
 }
-data["event-emitter (this implementation)"] = now() - time;
+data["event-emitter"] = now() - time;
 
 i = count;
 time = now();

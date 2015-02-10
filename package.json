@@ -1,8 +1,25 @@
 {
-  "name": "event-emitter",
+  "name": "events-ex",
   "version": "0.3.3",
-  "description": "Environment agnostic event emitter",
-  "author": "Mariusz Nowak <medyk@medikoo.com> (http://www.medikoo.com/)",
+  "description": "Browser-friendly enhanced events fully compatible with standard node.js and coffee-script",
+  "contributors": [
+    {
+      "name": "Mariusz Nowak",
+      "email": "medyk@medikoo.com",
+      "url": "http://www.medikoo.com/"
+    },
+    {
+      "name": "Riceball LEE",
+      "email": "snowyu.lee@gmail.com",
+      "url": "https://github.com/snowyu"
+    }
+  ],
+  "maintainers": [
+    {
+      "name": "Riceball LEE",
+      "email": "snowyu.lee@gmail.com"
+    }
+  ],
   "keywords": [
     "event",
     "events",
@@ -14,20 +31,18 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/medikoo/event-emitter.git"
+    "url": "git://github.com/snowyu/events-ex.js.git"
   },
   "dependencies": {
+    "d": "~0.1.1",
     "es5-ext": "~0.10.5",
-    "d": "~0.1.1"
+    "util-ex": "^0.2.4"
   },
   "devDependencies": {
-    "tad": "~0.2.1",
-    "xlint": "~0.2.2",
-    "xlint-jslint-medikoo": "~0.1.2"
+    "tad": "~0.2.1"
   },
   "scripts": {
-    "lint": "node node_modules/xlint/bin/xlint --linter=node_modules/xlint-jslint-medikoo/index.js --no-cache --no-stream",
-    "lint-console": "node node_modules/xlint/bin/xlint --linter=node_modules/xlint-jslint-medikoo/index.js --watch",
+    "prepublish": "coffee -o . -c src/*.coffee",
     "test": "node ./node_modules/tad/bin/tad"
   },
   "license": "MIT"

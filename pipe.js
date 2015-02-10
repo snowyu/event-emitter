@@ -4,7 +4,7 @@ var aFrom          = require('es5-ext/array/from')
   , remove         = require('es5-ext/array/#/remove')
   , value          = require('es5-ext/object/valid-object')
   , d              = require('d')
-  , emit           = require('./').methods.emit
+  , emit           = require('./event-emitter').methods.emit
 
   , defineProperty = Object.defineProperty
   , hasOwnProperty = Object.prototype.hasOwnProperty
