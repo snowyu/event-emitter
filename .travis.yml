@@ -1,14 +1,12 @@
+sudo: false
 language: node_js
 node_js:
-  - 0.8
-  - 0.10
-  - 0.11
-
-before_install:
-  - mkdir node_modules; ln -s ../ node_modules/event-emitter
-
+  - "0.10"
+  - "0.11"
+branches:
+  only:
+    - master
+before_install: npm install -g coffee-script
 notifications:
   email:
-    - medikoo+event-emitter@medikoo.com
-
-script: "npm test && npm run lint"
+    - snowyu.lee@gmail.com
