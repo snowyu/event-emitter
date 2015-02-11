@@ -22,7 +22,7 @@
   create = Object.create;
 
   module.exports = Eventable = (function() {
-    var Event, methods, off_, on_;
+    var Event, methods;
 
     function Eventable(aClass) {
       if (this instanceof Eventable) {
@@ -36,7 +36,7 @@
     }
 
     defineProperty(Eventable, 'methods', methods = {
-      on: on_ = function(type, listener) {
+      on: function(type, listener) {
         var data, m;
         if (!isFunction(listener)) {
           throw TypeError(listener + " is not a function");
@@ -86,42 +86,6 @@
         };
         once.listener = listener;
         this.on(type, once);
-        return this;
-      },
-      off: off_ = function(type, listener) {
-        var candidate, data, i, listeners;
-        if (!isFunction(listener)) {
-          throw TypeError(listener + " is not a function");
-        }
-        if (!this.hasOwnProperty("_events")) {
-          return this;
-        }
-        data = this._events;
-        if (!data[type]) {
-          return this;
-        }
-        listeners = data[type];
-        if (isObject(listeners)) {
-          i = 0;
-          while ((candidate = listeners[i])) {
-            if ((candidate === listener) || (candidate.listener === listener)) {
-              if (listeners.length === 2) {
-                data[type] = listeners[(i ? 0 : 1)];
-              } else {
-                listeners.splice(i, 1);
-              }
-              if (data.removeListener) {
-                this.emit("removeListener", type, listener);
-              }
-            }
-            ++i;
-          }
-        } else if ((listeners === listener) || (listeners.listener === listener)) {
-          delete data[type];
-          if (data.removeListener) {
-            this.emit("removeListener", type, listener);
-          }
-        }
         return this;
       },
       Event: Event = (function() {
@@ -271,6 +235,50 @@
         }
         return result;
       },
+      off: function(type, listener) {
+        var candidate, data, i, listeners;
+        if (!isFunction(listener)) {
+          throw TypeError(listener + " is not a function");
+        }
+        if (!this.hasOwnProperty("_events")) {
+          return this;
+        }
+        data = this._events;
+        if (!data[type]) {
+          return this;
+        }
+        listeners = data[type];
+        if ((listeners === listener) || (listeners.listener === listener)) {
+          delete data[type];
+          if (data.removeListener) {
+            this.emit("removeListener", type, listener);
+          }
+        } else if (isObject(listeners)) {
+          i = listeners.length;
+          while (--i >= 0) {
+            candidate = listeners[i];
+            if ((candidate === listener) || (candidate.listener === listener)) {
+              break;
+            }
+          }
+          if (i < 0) {
+            return this;
+          }
+          if (listeners.length === 1) {
+            listeners.length = 0;
+            delete data[type];
+          } else if (listeners.length === 2) {
+            data[type] = listeners[(i ? 0 : 1)];
+            listeners.length = 1;
+          } else {
+            listeners.splice(i, 1);
+          }
+          if (data.removeListener) {
+            this.emit("removeListener", type, listener);
+          }
+        }
+        return this;
+      },
       removeAllListeners: function(type) {
         var data, key, listeners;
         if (!this.hasOwnProperty('_events')) {
@@ -300,7 +308,7 @@
         if (isFunction(listeners)) {
           this.removeListener(type, listeners);
         } else if (isArray(listeners)) {
-          while (listeners.length) {
+          while (listeners.length && data[type]) {
             this.removeListener(type, listeners[listeners.length - 1]);
           }
         }

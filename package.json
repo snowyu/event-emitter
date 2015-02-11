@@ -36,7 +36,7 @@
   "dependencies": {
     "d": "~0.1.1",
     "es5-ext": "~0.10.5",
-    "util-ex": "^0.2.4"
+    "util-ex": "^0.2.5"
   },
   "devDependencies": {
     "tad": "~0.2.1"

@@ -17,7 +17,7 @@ module.exports = class Eventable
       extend aClass::, Eventable::
     aClass
   defineProperty @, 'methods', methods = 
-    on: on_ = (type, listener) ->
+    on: (type, listener) ->
       throw TypeError listener + " is not a function" if not isFunction listener
       if not @hasOwnProperty("_events")
         data = create(null)
@@ -62,26 +62,6 @@ module.exports = class Eventable
       @on type, once
       this
 
-    off: off_ = (type, listener) ->
-      throw TypeError listener + " is not a function" if not isFunction listener
-      return this unless @hasOwnProperty("_events")
-      data = @_events
-      return this unless data[type]
-      listeners = data[type]
-      if isObject listeners
-        i = 0
-        while (candidate = listeners[i])
-          if (candidate is listener) or (candidate.listener is listener)
-            if listeners.length is 2
-              data[type] = listeners[(if i then 0 else 1)]
-            else
-              listeners.splice i, 1
-            @emit "removeListener", type, listener if data.removeListener
-          ++i
-      else if (listeners is listener) or (listeners.listener is listener)
-        delete data[type] 
-        @emit "removeListener", type, listener if data.removeListener
-      this
 
     Event:  class Event
       eventCache = []
@@ -183,6 +163,31 @@ module.exports = class Eventable
       else
         result = data[type].length
       result
+    off: (type, listener) ->
+      throw TypeError listener + " is not a function" if not isFunction listener
+      return this unless @hasOwnProperty("_events")
+      data = @_events
+      return this unless data[type]
+      listeners = data[type]
+      if (listeners is listener) or (listeners.listener is listener)
+        delete data[type] 
+        @emit "removeListener", type, listener if data.removeListener
+      else if isObject listeners
+        i = listeners.length
+        while (--i >= 0)
+          candidate = listeners[i]
+          break if (candidate is listener) or (candidate.listener is listener)
+        return @ if i < 0
+        if listeners.length == 1
+          listeners.length = 0
+          delete data[type]
+        else if listeners.length == 2
+          data[type] = listeners[(if i then 0 else 1)]
+          listeners.length = 1
+        else
+          listeners.splice i, 1
+        @emit "removeListener", type, listener if data.removeListener
+      this
     removeAllListeners: (type)->
       return this unless @hasOwnProperty('_events')
       data = @_events
@@ -206,7 +211,7 @@ module.exports = class Eventable
         @removeListener type, listeners
       else if isArray listeners
         #LIFO order
-        while listeners.length
+        while listeners.length and data[type]
           @removeListener type, listeners[listeners.length-1]
       delete data[type]
       return this
