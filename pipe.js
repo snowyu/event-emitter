@@ -3,10 +3,9 @@
 var aFrom          = require('es5-ext/array/from')
   , remove         = require('es5-ext/array/#/remove')
   , value          = require('es5-ext/object/valid-object')
-  , d              = require('d')
   , emit           = require('./event-emitter').methods.emit
 
-  , defineProperty = Object.defineProperty
+  , defineProperty = require('util-ex/lib/defineProperty')
   , hasOwnProperty = Object.prototype.hasOwnProperty
   , getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
 
@@ -24,10 +23,10 @@ module.exports = function (e1, e2/*, name*/) {
 		(pipes = e1.__eePipes__).push(e2);
 		return pipe;
 	}
-	defineProperty(e1, '__eePipes__', d('c', pipes = [e2]));
+	defineProperty(e1, '__eePipes__', pipes = [e2]);
 	desc = getOwnPropertyDescriptor(e1, name);
 	if (!desc) {
-		desc = d('c', undefined);
+		desc = {};
 	} else {
 		delete desc.get;
 		delete desc.set;
@@ -37,6 +36,6 @@ module.exports = function (e1, e2/*, name*/) {
 		emit.apply(this, arguments);
 		for (i = 0; (emitter = data[i]); ++i) emit.apply(emitter, arguments);
 	};
-	defineProperty(e1, name, desc);
+	defineProperty(e1, name, desc.value, desc);
 	return pipe;
 };

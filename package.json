@@ -34,7 +34,6 @@
     "url": "git://github.com/snowyu/events-ex.js.git"
   },
   "dependencies": {
-    "d": "~0.1.1",
     "es5-ext": "~0.10.5",
     "util-ex": "^0.2.5"
   },
