@@ -15,6 +15,7 @@ module.exports = function (events, t) {
   result['emitter-method-names'] =require('./test-event-emitter-method-names');
   result['listeners-side-effects'] =require('./test-event-emitter-listeners-side-effects');
   result['no-error-provided-to-error-event'] =require('./test-event-emitter-no-error-provided-to-error-event');
+  result['num-args'] =require('./test-event-emitter-num-args');
   return result;
 }
 
