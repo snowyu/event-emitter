@@ -12,6 +12,7 @@ module.exports = function (events, t) {
   result['remove-all-listeners'] =require('./test-event-emitter-remove-all-listeners');
   result['max-listeners'] =require('./test-event-emitter-max-listeners');
   result['check-listener-leaks'] =require('./test-event-emitter-check-listener-leaks');
+  result['emitter-method-names'] =require('./test-event-emitter-method-names');
   return result;
 }
 
