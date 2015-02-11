@@ -14,6 +14,7 @@ module.exports = function (events, t) {
   result['check-listener-leaks'] =require('./test-event-emitter-check-listener-leaks');
   result['emitter-method-names'] =require('./test-event-emitter-method-names');
   result['listeners-side-effects'] =require('./test-event-emitter-listeners-side-effects');
+  result['no-error-provided-to-error-event'] =require('./test-event-emitter-no-error-provided-to-error-event');
   return result;
 }
 
