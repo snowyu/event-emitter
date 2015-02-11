@@ -1,16 +1,19 @@
 ### events-ex [![Build Status](https://img.shields.io/travis/snowyu/events-ex.js/master.png)](http://travis-ci.org/snowyu/events-ex.js) [![npm](https://img.shields.io/npm/v/events-ex.svg)](https://npmjs.org/package/events-ex) [![downloads](https://img.shields.io/npm/dm/events-ex.svg)](https://npmjs.org/package/events-ex) [![license](https://img.shields.io/npm/l/events-ex.svg)](https://npmjs.org/package/events-ex) 
 
 
-Browser-friendly enhanced events fully compatible with standard node.js and coffee-script. It's modified from [event-emitter](https://github.com/medikoo/event-emitter) mainly.
+Browser-friendly enhanced events most compatible with standard node.js and coffee-script. It's modified from [event-emitter](https://github.com/medikoo/event-emitter) mainly.
 
 
 ### Difference with event-emitter and events
 
-- domain is not supported yet
-+ The event object bubbling Supports 
+- domain is not supported yet(TODO)
++ **`broken change`**: The event object bubbling Supports 
   + the event object as listener's "this" object. 
   + return the result property of event object to emitter.
   + prevent the rest of listener from be excuted if set the stopped property of event object to true 
+  * **`broken change`**: the `emit` return the result of listeners' callback instead of the successful state.
+  * **`broken change`**: the listeners' callback function this object is `Event` Object instead of the emitter object.
+    * the emitter object is the this.target property now.
 + add the defaultMaxListeners class property to keep compatible.
 + add the setMaxListeners method to keep compatible.
 + add `error`, `newListener` and `removeListener` events to keep compatible.

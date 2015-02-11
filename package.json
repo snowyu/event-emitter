@@ -1,7 +1,7 @@
 {
   "name": "events-ex",
   "version": "0.9.0",
-  "description": "Browser-friendly enhanced events fully compatible with standard node.js and coffee-script",
+  "description": "Browser-friendly enhanced events most compatible with standard node.js and coffee-script",
   "contributors": [
     {
       "name": "Mariusz Nowak",

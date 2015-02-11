@@ -214,6 +214,7 @@ module.exports = class Eventable
   #added to it. This is a useful default which helps finding memory leaks.
   @defaultMaxListeners: 10
   @listenerCount: methods.listenerCount
+  emit: methods.emit
   on: methods.on
   addListener: methods.on
   off: methods.off

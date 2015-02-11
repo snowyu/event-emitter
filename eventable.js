@@ -312,6 +312,8 @@
 
     Eventable.listenerCount = methods.listenerCount;
 
+    Eventable.prototype.emit = methods.emit;
+
     Eventable.prototype.on = methods.on;
 
     Eventable.prototype.addListener = methods.on;
