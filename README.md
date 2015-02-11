@@ -1,7 +1,7 @@
 ### events-ex [![Build Status](https://img.shields.io/travis/snowyu/events-ex.js/master.png)](http://travis-ci.org/snowyu/events-ex.js) [![npm](https://img.shields.io/npm/v/events-ex.svg)](https://npmjs.org/package/events-ex) [![downloads](https://img.shields.io/npm/dm/events-ex.svg)](https://npmjs.org/package/events-ex) [![license](https://img.shields.io/npm/l/events-ex.svg)](https://npmjs.org/package/events-ex) 
 
 
-Browser-friendly enhanced events most compatible with standard node.js and coffee-script. It's modified from [event-emitter](https://github.com/medikoo/event-emitter) mainly.
+Browser-friendly enhanced events most compatible with standard node.js and coffee-script. It's modified from [event-emitter](https://github.com/medikoo/event-emitter) mainly. It can add event-able to your class directly.
 
 
 ### Difference with event-emitter and events
@@ -23,7 +23,7 @@ Browser-friendly enhanced events most compatible with standard node.js and coffe
 
 ### Installation
 
-	$ npm install event-ex
+	$ npm install events-ex
 	
 To port it to Browser or any other (non CJS) environment, use your favorite CJS bundler. No favorite yet? Try: [Browserify](http://browserify.org/), [Webmake](https://github.com/medikoo/modules-webmake) or [Webpack](http://webpack.github.io/)
 
@@ -33,7 +33,7 @@ Node JS events Usage:
 
 ```coffee
 
-EventEmitter = require('event-ex')
+EventEmitter = require('events-ex')
 inherits     = require('inherits-ex')
 
 # Demo the event object bubbling usage:
