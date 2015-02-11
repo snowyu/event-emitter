@@ -21,6 +21,11 @@
 
 module.exports = function (events, assert) {
 
+  var oldError = console.error;
+  var oldTrace = console.trace;
+  console.error = function(){};
+  console.trace = function(){};
+
   var e = new events.EventEmitter();
 
   // default
@@ -83,4 +88,6 @@ module.exports = function (events, assert) {
 
   // chainable
   assert.strictEqual(e, e.setMaxListeners(1), 'setMaxListeners chainable');
+  console.error = oldError;
+  console.trace = oldTrace;
 }
