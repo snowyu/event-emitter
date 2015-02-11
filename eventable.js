@@ -130,7 +130,7 @@
           if (data) {
             listeners = data[type];
           }
-          if (type === 'error' && !listeners) {
+          if (!listeners && type === 'error') {
             er = arguments[1];
             if (this.domain) {
               if (!er) {

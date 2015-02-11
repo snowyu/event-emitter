@@ -90,7 +90,7 @@ module.exports = (aClass)->
         data = @_events
         listeners = data[type] if data
         #If there is no 'error' event listener then throw.
-        if type is 'error' and not listeners
+        if not listeners and type is 'error'
           er = arguments[1]
           if @domain
             er = new Error('Uncaught, unspecified "error" event.') unless er
