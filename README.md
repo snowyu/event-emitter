@@ -29,6 +29,24 @@ To port it to Browser or any other (non CJS) environment, use your favorite CJS 
 
 ### Usage
 
+
+Add the event-able feature to your class directly:
+
+```coffee
+eventable = require('events-ex/eventable')
+
+class MyClass
+  eventable MyClass
+
+my = new MyClass
+
+my.on 'event', ->
+  console.log 'event occur'
+
+my.emit 'event'
+
+```
+
 Node JS events Usage:
 
 ```coffee
