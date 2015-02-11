@@ -247,12 +247,12 @@
         return this;
       },
       listeners: function(type) {
-        var data, result, reuslt;
+        var data, result;
         data = this._events;
         if (!(data && data[type])) {
           result = [];
         } else if (isFunction(data[type])) {
-          reuslt = [data[type]];
+          result = [data[type]];
         } else {
           result = data[type].slice();
         }

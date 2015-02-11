@@ -170,7 +170,7 @@ module.exports = class Eventable
       if not (data and data[type])
         result = []
       else if isFunction data[type]
-        reuslt = [data[type]]
+        result = [data[type]]
       else
         result = data[type].slice()
       result
