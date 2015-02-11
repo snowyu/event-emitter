@@ -77,14 +77,15 @@
         }
         fired = false;
         self = this;
-        on_.call(this, type, once = function() {
-          off_.call(self, type, once);
+        once = function() {
+          self.off(type, once);
           if (!fired) {
             fired = true;
             return listener.apply(this, arguments);
           }
-        });
+        };
         once.listener = listener;
+        this.on(type, once);
         return this;
       },
       off: off_ = function(type, listener) {

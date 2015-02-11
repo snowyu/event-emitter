@@ -53,13 +53,13 @@ module.exports = class Eventable
       fired = false
       self = @
       
-      on_.call @, type, once = ->
-        off_.call self, type, once
+      once = ->
+        self.off type, once
         if not fired
           fired = true
           listener.apply this, arguments
-
       once.listener = listener
+      @on type, once
       this
 
     off: off_ = (type, listener) ->
