@@ -10,6 +10,7 @@ module.exports = function (events, t) {
   result['modify in emit'] =require('./test-event-emitter-modify-in-emit');
   result['emitter subclass'] =require('./test-event-emitter-subclass');
   result['remove-all-listeners'] =require('./test-event-emitter-remove-all-listeners');
+  result['max-listeners'] =require('./test-event-emitter-max-listeners');
   return result;
 }
 
