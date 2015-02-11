@@ -13,6 +13,7 @@ module.exports = function (events, t) {
   result['max-listeners'] =require('./test-event-emitter-max-listeners');
   result['check-listener-leaks'] =require('./test-event-emitter-check-listener-leaks');
   result['emitter-method-names'] =require('./test-event-emitter-method-names');
+  result['listeners-side-effects'] =require('./test-event-emitter-listeners-side-effects');
   return result;
 }
 
