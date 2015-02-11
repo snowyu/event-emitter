@@ -2,14 +2,14 @@
 
 Eventable = require('./eventable')
 
-methods           = Eventable.methods
+methods           = Eventable().methods
 create            = Object.create
 defineProperties  = Object.defineProperties
 
 descriptors =
   on:
     value: methods.on
-  once: 
+  once:
     value: methods.once
   off:
     value: methods.off

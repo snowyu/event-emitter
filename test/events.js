@@ -11,6 +11,7 @@ module.exports = function (events, t) {
   result['emitter subclass'] =require('./test-event-emitter-subclass');
   result['remove-all-listeners'] =require('./test-event-emitter-remove-all-listeners');
   result['max-listeners'] =require('./test-event-emitter-max-listeners');
+  result['check-listener-leaks'] =require('./test-event-emitter-check-listener-leaks');
   return result;
 }
 

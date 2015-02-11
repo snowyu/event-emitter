@@ -5,7 +5,7 @@
 
   Eventable = require('./eventable');
 
-  methods = Eventable.methods;
+  methods = Eventable().methods;
 
   create = Object.create;
 

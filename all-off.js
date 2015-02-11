@@ -1,7 +1,7 @@
 'use strict';
 
 var Eventable = require('./eventable');
-var removeAllListeners = Eventable.methods.removeAllListeners;
+var removeAllListeners = Eventable().methods.removeAllListeners;
 
 module.exports = function (emitter/*, type*/) {
 	var type = arguments[1];
