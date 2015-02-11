@@ -11,9 +11,9 @@ Browser-friendly enhanced events most compatible with standard node.js and coffe
   + the event object as listener's "this" object. 
   + return the result property of event object to emitter.
   + prevent the rest of listener from be excuted if set the stopped property of event object to true 
-  * **`broken change`**: the `emit` return the result of listeners' callback instead of the successful state.
-  * **`broken change`**: the listeners' callback function this object is `Event` Object instead of the emitter object.
-    * the emitter object is the this.target property now.
+  * **`broken change`**: the `emit` return the result of listeners's callback function instead of the successful state.
+  * **`broken change`**: the `this` object of listeners' callback function is the `Event` Object instead of the emitter object.
+    * the emitter object is put into the `target` property of the `Event` Object.
 + add the defaultMaxListeners class property to keep compatible.
 + add the setMaxListeners method to keep compatible.
 + add `error`, `newListener` and `removeListener` events to keep compatible.
