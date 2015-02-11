@@ -130,7 +130,7 @@
           if (data) {
             listeners = data[type];
           }
-          if (type === 'error' && !(data && listeners)) {
+          if (type === 'error' && !listeners) {
             er = arguments[1];
             if (this.domain) {
               if (!er) {
@@ -154,24 +154,7 @@
             this.domain.enter();
           }
           evt = Event(this);
-          if (isObject(listeners)) {
-            l = arguments.length;
-            args = new Array(l - 1);
-            i = 1;
-            while (i < l) {
-              args[i - 1] = arguments[i];
-              ++i;
-            }
-            listeners = listeners.slice();
-            i = 0;
-            while ((listener = listeners[i])) {
-              listener.apply(evt, args);
-              if (evt.stopped) {
-                break;
-              }
-              ++i;
-            }
-          } else {
+          if (!isObject(listeners)) {
             switch (arguments.length) {
               case 1:
                 listeners.call(evt);
@@ -185,12 +168,27 @@
               default:
                 l = arguments.length;
                 args = new Array(l - 1);
-                i = 1;
-                while (i < l) {
+                i = 0;
+                while (++i < l) {
                   args[i - 1] = arguments[i];
-                  ++i;
                 }
                 listeners.apply(evt, args);
+            }
+          } else {
+            l = arguments.length;
+            args = new Array(l - 1);
+            i = 0;
+            while (++i < l) {
+              args[i - 1] = arguments[i];
+            }
+            listeners = listeners.slice();
+            i = 0;
+            while ((listener = listeners[i])) {
+              listener.apply(evt, args);
+              if (evt.stopped) {
+                break;
+              }
+              ++i;
             }
           }
           if (this.domain && this !== process) {

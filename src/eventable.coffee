@@ -90,7 +90,7 @@ module.exports = (aClass)->
         data = @_events
         listeners = data[type] if data
         #If there is no 'error' event listener then throw.
-        if type is 'error' and not (data and listeners)
+        if type is 'error' and not listeners
           er = arguments[1]
           if @domain
             er = new Error('Uncaught, unspecified "error" event.') unless er
@@ -106,20 +106,7 @@ module.exports = (aClass)->
         return unless listeners
         @domain.enter() if @domain and this isnt process
         evt = Event(this)
-        if isObject listeners
-          l = arguments.length
-          args = new Array(l - 1)
-          i = 1
-          while i < l
-            args[i - 1] = arguments[i]
-            ++i
-          listeners = listeners.slice()
-          i = 0
-          while (listener = listeners[i])
-            listener.apply evt, args
-            break if evt.stopped
-            ++i
-        else
+        if not isObject listeners
           switch arguments.length
             when 1
               listeners.call evt
@@ -130,11 +117,22 @@ module.exports = (aClass)->
             else
               l = arguments.length
               args = new Array(l - 1)
-              i = 1
-              while i < l
+              i = 0
+              while ++i < l
                 args[i - 1] = arguments[i]
-                ++i
               listeners.apply evt, args
+        else
+          l = arguments.length
+          args = new Array(l - 1)
+          i = 0
+          while ++i < l
+            args[i - 1] = arguments[i]
+          listeners = listeners.slice()
+          i = 0
+          while (listener = listeners[i])
+            listener.apply evt, args
+            break if evt.stopped
+            ++i
         @domain.exit() if @domain and this isnt process
         evt.end()
       setMaxListeners: (n)->
