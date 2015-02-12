@@ -45,9 +45,8 @@
     "prepublish": "coffee -o . -c src/*.coffee",
     "test": "node ./node_modules/tad/bin/tad"
   },
-  "pre-commit": [
-    "prepublish",
-    "test"
-  ],
+  "pre-commit": {
+    "run": ["prepublish", "test"]
+  },
   "license": "MIT"
 }
