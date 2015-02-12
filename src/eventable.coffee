@@ -1,15 +1,17 @@
 "use strict"
-isFunction  = require("util-ex/lib/is/type/function")
-isObject    = require("util-ex/lib/is/type/object")
-isNumber    = require("util-ex/lib/is/type/number")
-isUndefined = require("util-ex/lib/is/type/undefined")
-isArray     = require("util-ex/lib/is/type/array")
-extend      = require("util-ex/lib/_extend")
-defineProperty = require("util-ex/lib/defineProperty")
-hasOwnProperty = Object::hasOwnProperty
-create = Object.create
+isFunction      = require("util-ex/lib/is/type/function")
+isObject        = require("util-ex/lib/is/type/object")
+isNumber        = require("util-ex/lib/is/type/number")
+isUndefined     = require("util-ex/lib/is/type/undefined")
+isArray         = require("util-ex/lib/is/type/array")
+extend          = require("util-ex/lib/_extend")
+extendFilter    = require("util-ex/lib/extend")
+injectMethods   = require("util-ex/lib/injectMethods")
+defineProperty  = require("util-ex/lib/defineProperty")
+hasOwnProperty  = Object::hasOwnProperty
+create          = Object.create
 
-module.exports = (aClass)->
+module.exports = (aClass, aOptions)->
   class Eventable
     defineProperty @, 'methods', methods =
       on: (type, listener) ->
@@ -230,7 +232,33 @@ module.exports = (aClass)->
   if not aClass?
     aClass = Eventable
   else if not aClass.hasOwnProperty('defaultMaxListeners')
-    extend aClass, Eventable
-    extend aClass::, Eventable::
+    if not aOptions? or not (aOptions.include or aOptions.exclude)
+      extend aClass, Eventable
+      extend aClass::, Eventable::
+    else
+      vIncludes = aOptions.include
+      if vIncludes
+        vIncludes = [vIncludes] if not isArray vIncludes
+      else
+        vIncludes = []
+      vIncludes.push 'defaultMaxListeners'
+      vExcludes = aOptions.exclude
+      if vExcludes
+        vExcludes = [vExcludes] if not isArray vExcludes
+      else
+        vExcludes = []
+      filter = (k)->
+        result = vIncludes.length and not vExcludes.length
+        if result
+          result = k in vIncludes
+        else
+          result = not (k in vExcludes)
+        result
+      extendFilter aClass, Eventable, filter
+      extendFilter aClass::, Eventable::, filter
+  if aOptions?
+    injectMethods(aClass::, aOptions.methods) if aOptions.methods instanceof Object
+    injectMethods(aClass, aOptions.classMethods) if aOptions.classMethods instanceof Object
   aClass
+
 

@@ -6,6 +6,7 @@ Browser-friendly enhanced events most compatible with standard node.js and coffe
 
 ### Difference with event-emitter and events
 
++ powerful eventable ability
 - domain is not supported yet(TODO)
 + **`broken change`**: The event object bubbling Supports 
   + the event object as listener's "this" object. 
@@ -93,18 +94,44 @@ emitter.emit('test', arg1, arg2/*…args*/); // No listeners invoked
 ```
 ### Additional utilities
 
-#### allOff(obj) _(event-emitter/all-off)_
+#### eventable(class[, options]) _(events-ex/eventable)_
+
+Add the event-able ability to the class directly.
+
+* `options`*(object)*
+  * `include`*(array|string)*: only these emitter methods will be added to the class
+  * `exclude`*(array|string)*: theses emitter methods would not be added to the class
+  * `methods`*(object)*: hooked methods to the class
+    * key: the method name to hook.
+    * value: the new method function
+      * use `this.super()` to call the original method.
+      * `this.self` is the original `this` object.
+  * `classMethods`*(object)*: hooked class methods to the class
+
+**Note**: the `defaultMaxListeners` is always added to the class.
+
+```coffee
+  eventable  = require('events-ex/eventable')
+  OtherClass = require('OtherClass')
+  class MyClass
+    # only 'on', 'off', 'emit' added to the class
+    eventable MyClass, include: ['on', 'off', 'emit']
+  eventable OtherClass, methods
+```
+#### allOff(obj) _(events-ex/all-off)_
+
+**keep compatible only**: the `removeAllListeners` has already been buildin.
 
 Removes all listeners from given event emitter object
 
-#### hasListeners(obj[, name]) _(event-emitter/has-listeners)_
+#### hasListeners(obj[, name]) _(events-ex/has-listeners)_
 
 Whether object has some listeners attached to the object.
 When `name` is provided, it checks listeners for specific event name
 
 ```javascript
 var emitter = ee();
-var hasListeners = require('event-emitter/has-listeners');
+var hasListeners = require('events-ex/has-listeners');
 var listener = function () {};
 
 hasListeners(emitter); // false
@@ -118,19 +145,19 @@ emitter.off('foo', listener);
 hasListeners(emitter, 'foo'); // false
 ```
 
-#### pipe(source, target[, emitMethodName]) _(event-emitter/pipe)_
+#### pipe(source, target[, emitMethodName]) _(events-ex/pipe)_
 
 Pipes all events from _source_ emitter onto _target_ emitter (all events from _source_ emitter will be emitted also on _target_ emitter, but not other way).  
 Returns _pipe_ object which exposes `pipe.close` function. Invoke it to close configured _pipe_.  
 It works internally by redefinition of `emit` method, if in your interface this method is referenced differently, provide its name (or symbol) with third argument.
 
-#### unify(emitter1, emitter2) _(event-emitter/unify)_
+#### unify(emitter1, emitter2) _(events-ex/unify)_
 
 Unifies event handling for two objects. Events emitted on _emitter1_ would be also emitter on _emitter2_, and other way back.  
 Non reversible.
 
 ```javascript
-var eeUnify = require('event-emitter/unify');
+var eeUnify = require('events-ex/unify');
 
 var emitter1 = ee(), listener1, listener3;
 var emitter2 = ee(), listener2, listener4;

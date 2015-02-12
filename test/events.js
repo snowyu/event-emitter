@@ -2,7 +2,6 @@
 
 module.exports = function (events, t) {
   var result = {};
-  var tests = {};
   result['listeners'] = require('./events-listeners')(events, t);
   result['add listeners'] = require('./test-event-emitter-add-listeners');
   result['remove listeners'] = require('./events-remove-listeners')(events, t);
