@@ -38,11 +38,16 @@
     "util-ex": "^0.2.6"
   },
   "devDependencies": {
+    "pre-commit": "~1.0.2",
     "tad": "~0.2.1"
   },
   "scripts": {
     "prepublish": "coffee -o . -c src/*.coffee",
     "test": "node ./node_modules/tad/bin/tad"
   },
+  "pre-commit": [
+    "prepublish",
+    "test"
+  ],
   "license": "MIT"
 }
