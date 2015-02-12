@@ -112,11 +112,16 @@ Add the event-able ability to the class directly.
 
 ```coffee
   eventable  = require('events-ex/eventable')
-  OtherClass = require('OtherClass')
+  #OtherClass = require('OtherClass')
+  class OtherClass
+    exec: -> console.log "my original exec"
   class MyClass
     # only 'on', 'off', 'emit' added to the class
     eventable MyClass, include: ['on', 'off', 'emit']
-  eventable OtherClass, methods
+  eventable OtherClass, methods:
+    exec: ->
+      console.log "new exec"
+      @super() # call the original method
 ```
 #### allOff(obj) _(events-ex/all-off)_
 
