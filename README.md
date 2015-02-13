@@ -4,22 +4,28 @@
 Browser-friendly enhanced events most compatible with standard node.js and coffee-script. It's modified from [event-emitter](https://github.com/medikoo/event-emitter) mainly. It can add event-able to your class directly.
 
 
-### Difference with event-emitter and events
+### Features
 
-+ powerful eventable ability
-- domain is not supported yet(TODO)
-+ **`broken change`**: The event object bubbling Supports 
-  + the event object as listener's "this" object. 
-  + return the result property of event object to emitter.
-  + prevent the rest of listener from be excuted if set the stopped property of event object to true 
-  * **`broken change`**: the `emit` return the result of listeners's callback function instead of the successful state.
-  * **`broken change`**: the `this` object of listeners' callback function is the `Event` Object instead of the emitter object.
-    * the emitter object is put into the `target` property of the `Event` Object.
-+ add the defaultMaxListeners class property to keep compatible.
-+ add the setMaxListeners method to keep compatible.
-+ add `error`, `newListener` and `removeListener` events to keep compatible.
-+ add listeners() method to keep compatible.
-+ add listenerCount() class method to keep compatible.
+* rewrite the core architecture
+* keep most compatible with [node events](nodejs.org/api/events.html) and [event-emitter](https://github.com/medikoo/event-emitter)
++ more powerful event-able ability
+* hookable event system
+* Difference with [node events](nodejs.org/api/events.html)
+  - domain is not supported yet(TODO)
+  + **`broken change`**: The event object bubbling Supports 
+    + the event object as listener's "this" object. 
+    + return the result property of event object to emitter.
+    + prevent the rest of listener from be excuted if set the stopped property of event object to true 
+    * **`broken change`**: the `emit` return the result of listeners's callback function instead of the successful state.
+    * **`broken change`**: the `this` object of listeners' callback function is the `Event` Object instead of the emitter object.
+      * the emitter object is put into the `target` property of the `Event` Object.
+* Difference with [event-emitter](https://github.com/medikoo/event-emitter)
+  + **`broken change`**: The event object bubbling Supports(see above) 
+  + add the defaultMaxListeners class property to keep compatible with node events.
+  + add the setMaxListeners method to keep compatible with node events.
+  + add `error`, `newListener` and `removeListener` events to keep compatible with node events.
+  + add listeners() method to keep compatible with node events.
+  + add listenerCount() class method to keep compatible with node events.
 
 
 ### Installation
