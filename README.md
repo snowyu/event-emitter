@@ -34,6 +34,7 @@ To port it to Browser or any other (non CJS) environment, use your favorite CJS 
 Add the event-able feature to your class directly:
 
 ```coffee
+# advanced usage see API topic.
 eventable = require('events-ex/eventable')
 
 class MyClass
@@ -92,7 +93,7 @@ emitter.emit('test', arg1, arg2/*…args*/); // Only first listener invoked
 emitter.off('test', listener);              // Removed first listener
 emitter.emit('test', arg1, arg2/*…args*/); // No listeners invoked
 ```
-### Additional utilities
+### API
 
 #### eventable(class[, options]) _(events-ex/eventable)_
 
@@ -115,9 +116,12 @@ Add the event-able ability to the class directly.
   #OtherClass = require('OtherClass')
   class OtherClass
     exec: -> console.log "my original exec"
+
   class MyClass
     # only 'on', 'off', 'emit' added to the class
     eventable MyClass, include: ['on', 'off', 'emit']
+
+  # add the eventable ability to OtherClass and inject the exec method of OtherClass.
   eventable OtherClass, methods:
     exec: ->
       console.log "new exec"
