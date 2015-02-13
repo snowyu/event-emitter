@@ -10,6 +10,9 @@ Browser-friendly enhanced events most compatible with standard node.js and coffe
 * keep most compatible with [node events](nodejs.org/api/events.html) and [event-emitter](https://github.com/medikoo/event-emitter)
 + more powerful event-able ability
 * hookable event system
+
+### Differences
+
 * Difference with [node events](nodejs.org/api/events.html)
   - domain is not supported yet(TODO)
   + **`broken change`**: The event object bubbling Supports 
