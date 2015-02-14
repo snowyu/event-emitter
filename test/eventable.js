@@ -1,5 +1,7 @@
 'use strict';
 
+var inherits = require('util-ex').inherits;
+
 //t=Eventable; a=assert
 module.exports = function (eventable, assert) {
   var result = {};
@@ -12,17 +14,17 @@ module.exports = function (eventable, assert) {
     var My = function(){};
     eventable(My, {include: ['on', 'off', 'listenerCount']});
     var keys = Object.keys(My);
-    assert.deepEqual(keys, ['defaultMaxListeners', 'listenerCount']);
+    assert.deepEqual(keys, ['listenerCount']);
     keys = Object.keys(My.prototype);
-    assert.deepEqual(keys, ['on', 'off']);
+    assert.deepEqual(keys, ['emit','on','off']);
   });
   it('should include one method', function(){
     var My = function(){};
     eventable(My, {include: 'on'});
     var keys = Object.keys(My);
-    assert.deepEqual(keys, ['defaultMaxListeners']);
+    assert.deepEqual(keys, []);
     keys = Object.keys(My.prototype);
-    assert.deepEqual(keys, ['on']);
+    assert.deepEqual(keys, ['emit','on']);
   });
 
 
@@ -86,13 +88,15 @@ module.exports = function (eventable, assert) {
     assert.equal(newExec, true, 'should execute the new func');
   });
   it('should not inject methods twice', function(){
-    var My = function(){};
     var newExec = 0;
     var oldExec = 0;
-    My.prototype.exec = function(){
+    var Root = function(){};
+    Root.prototype.exec = function(){
       oldExec++;
     };
-    eventable(My, {methods: {exec: function(){newExec++;this['super']();}}});
+    var My = function(){};
+    inherits(My, Root);
+    eventable(Root, {methods: {exec: function(){newExec++;this['super']();}}});
     eventable(My, {methods: {exec: function(){newExec++;this['super']();}}});
     var my = new My;
     my.exec();

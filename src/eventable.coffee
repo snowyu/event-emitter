@@ -231,7 +231,7 @@ module.exports = (aClass, aOptions)->
 
   if not aClass?
     aClass = Eventable
-  else if not aClass.hasOwnProperty('defaultMaxListeners')
+  else if not aClass::emit
     if not aOptions? or not (aOptions.include or aOptions.exclude)
       extend aClass, Eventable
       extend aClass::, Eventable::
@@ -241,7 +241,7 @@ module.exports = (aClass, aOptions)->
         vIncludes = [vIncludes] if not isArray vIncludes
       else
         vIncludes = []
-      vIncludes.push 'defaultMaxListeners'
+      vIncludes.push 'emit'
       vExcludes = aOptions.exclude
       if vExcludes
         vExcludes = [vExcludes] if not isArray vExcludes

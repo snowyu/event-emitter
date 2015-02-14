@@ -345,7 +345,7 @@
     })();
     if (aClass == null) {
       aClass = Eventable;
-    } else if (!aClass.hasOwnProperty('defaultMaxListeners')) {
+    } else if (!aClass.prototype.emit) {
       if ((aOptions == null) || !(aOptions.include || aOptions.exclude)) {
         extend(aClass, Eventable);
         extend(aClass.prototype, Eventable.prototype);
@@ -358,7 +358,7 @@
         } else {
           vIncludes = [];
         }
-        vIncludes.push('defaultMaxListeners');
+        vIncludes.push('emit');
         vExcludes = aOptions.exclude;
         if (vExcludes) {
           if (!isArray(vExcludes)) {

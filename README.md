@@ -118,7 +118,7 @@ Add the event-able ability to the class directly.
       * `this.self` is the original `this` object.
   * `classMethods`*(object)*: hooked class methods to the class
 
-**Note**: the `defaultMaxListeners` is always added to the class.
+**Note**: the `emit` is always added to the class.
 
 ```coffee
   eventable  = require('events-ex/eventable')
