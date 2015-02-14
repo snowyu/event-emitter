@@ -85,6 +85,20 @@ module.exports = function (eventable, assert) {
     assert.equal(oldExec, true, 'should execute the original func');
     assert.equal(newExec, true, 'should execute the new func');
   });
+  it('should not inject methods twice', function(){
+    var My = function(){};
+    var newExec = 0;
+    var oldExec = 0;
+    My.prototype.exec = function(){
+      oldExec++;
+    };
+    eventable(My, {methods: {exec: function(){newExec++;this['super']();}}});
+    eventable(My, {methods: {exec: function(){newExec++;this['super']();}}});
+    var my = new My;
+    my.exec();
+    assert.equal(oldExec, 1, 'should execute the original func once');
+    assert.equal(newExec, 1, 'should execute the new func once');
+  });
 
 
   return result;

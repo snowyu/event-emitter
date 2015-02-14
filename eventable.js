@@ -380,13 +380,13 @@
         extendFilter(aClass, Eventable, filter);
         extendFilter(aClass.prototype, Eventable.prototype, filter);
       }
-    }
-    if (aOptions != null) {
-      if (aOptions.methods instanceof Object) {
-        injectMethods(aClass.prototype, aOptions.methods);
-      }
-      if (aOptions.classMethods instanceof Object) {
-        injectMethods(aClass, aOptions.classMethods);
+      if (aOptions != null) {
+        if (aOptions.methods instanceof Object) {
+          injectMethods(aClass.prototype, aOptions.methods);
+        }
+        if (aOptions.classMethods instanceof Object) {
+          injectMethods(aClass, aOptions.classMethods);
+        }
       }
     }
     return aClass;

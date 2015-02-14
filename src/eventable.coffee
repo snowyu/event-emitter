@@ -256,9 +256,9 @@ module.exports = (aClass, aOptions)->
         result
       extendFilter aClass, Eventable, filter
       extendFilter aClass::, Eventable::, filter
-  if aOptions?
-    injectMethods(aClass::, aOptions.methods) if aOptions.methods instanceof Object
-    injectMethods(aClass, aOptions.classMethods) if aOptions.classMethods instanceof Object
+    if aOptions?
+      injectMethods(aClass::, aOptions.methods) if aOptions.methods instanceof Object
+      injectMethods(aClass, aOptions.classMethods) if aOptions.classMethods instanceof Object
   aClass
 
 
