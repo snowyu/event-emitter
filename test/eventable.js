@@ -16,7 +16,7 @@ module.exports = function (eventable, assert) {
     var keys = Object.keys(My);
     assert.deepEqual(keys, ['listenerCount']);
     keys = Object.keys(My.prototype);
-    assert.deepEqual(keys, ['emit','on','off']);
+    assert.deepEqual(keys, ['on','off']);
   });
   it('should include one method', function(){
     var My = function(){};
@@ -24,7 +24,7 @@ module.exports = function (eventable, assert) {
     var keys = Object.keys(My);
     assert.deepEqual(keys, []);
     keys = Object.keys(My.prototype);
-    assert.deepEqual(keys, ['emit','on']);
+    assert.deepEqual(keys, ['on']);
   });
 
 
@@ -68,7 +68,6 @@ module.exports = function (eventable, assert) {
       'addListener',
       'removeListener',
       'removeAllListeners',
-      'emit',
       'once',
       'on',
       'off',

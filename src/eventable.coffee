@@ -228,5 +228,5 @@ getEventableClass = (aClass)->
     listeners: methods.listeners
   #End Class Eventable
 
-module.exports = customAbility getEventableClass, 'emit', true
+module.exports = customAbility getEventableClass, true
 

@@ -344,6 +344,6 @@
     })();
   };
 
-  module.exports = customAbility(getEventableClass, 'emit', true);
+  module.exports = customAbility(getEventableClass, true);
 
 }).call(this);
