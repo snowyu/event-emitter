@@ -21,6 +21,7 @@
     }
   ],
   "keywords": [
+    "ability",
     "event",
     "events",
     "trigger",
@@ -34,6 +35,7 @@
     "url": "git://github.com/snowyu/events-ex.js.git"
   },
   "dependencies": {
+    "custom-ability": "~1.1.1",
     "es5-ext": "~0.10.5",
     "util-ex": "^0.2.8"
   },
@@ -46,7 +48,10 @@
     "test": "node ./node_modules/tad/bin/tad"
   },
   "pre-commit": {
-    "run": ["prepublish", "test"]
+    "run": [
+      "prepublish",
+      "test"
+    ]
   },
   "license": "MIT"
 }

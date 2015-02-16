@@ -1,28 +1,27 @@
-"use strict"
-isFunction      = require("util-ex/lib/is/type/function")
-isObject        = require("util-ex/lib/is/type/object")
-isNumber        = require("util-ex/lib/is/type/number")
-isUndefined     = require("util-ex/lib/is/type/undefined")
-isArray         = require("util-ex/lib/is/type/array")
-extend          = require("util-ex/lib/_extend")
-extendFilter    = require("util-ex/lib/extend")
-injectMethods   = require("util-ex/lib/injectMethods")
-defineProperty  = require("util-ex/lib/defineProperty")
+'use strict'
+customAbility   = require 'custom-ability'
+isFunction      = require 'util-ex/lib/is/type/function'
+isObject        = require 'util-ex/lib/is/type/object'
+isNumber        = require 'util-ex/lib/is/type/number'
+isUndefined     = require 'util-ex/lib/is/type/undefined'
+isArray         = require 'util-ex/lib/is/type/array'
+defineProperty  = require 'util-ex/lib/defineProperty'
 hasOwnProperty  = Object::hasOwnProperty
 create          = Object.create
 
-module.exports = (aClass, aOptions)->
+getEventableClass = (aClass)->
   class Eventable
+    aClass = Eventable unless aClass?
     defineProperty @, 'methods', methods =
       on: (type, listener) ->
-        throw TypeError listener + " is not a function" if not isFunction listener
-        if not @hasOwnProperty("_events")
+        throw TypeError listener + ' is not a function' if not isFunction listener
+        if not @hasOwnProperty('_events')
           data = create(null)
-          defineProperty this, "_events", data
+          defineProperty this, '_events', data
         else
           data = @_events
-        #To avoid recursion in the case that type === "newListener"! Before
-        # adding it to the listeners, first emit "newListener".
+        #To avoid recursion in the case that type === 'newListener'! Before
+        # adding it to the listeners, first emit 'newListener'.
         if data.newListener
           @emit 'newListener', type, if isFunction(listener.listener) then listener.listener else listener
         unless data[type]
@@ -47,7 +46,7 @@ module.exports = (aClass, aOptions)->
         this
 
       once: (type, listener) ->
-        throw TypeError listener + " is not a function" if not isFunction listener
+        throw TypeError listener + ' is not a function' if not isFunction listener
         fired = false
         self = @
         
@@ -95,7 +94,7 @@ module.exports = (aClass, aOptions)->
         if not listeners and type is 'error'
           er = arguments[1]
           if @domain
-            er = new Error('Uncaught, unspecified "error" event.') unless er
+            er = new Error("Uncaught, unspecified 'error' event.") unless er
             er.domainEmitter = @
             er.domain = @domain
             er.domainThrown = false
@@ -103,7 +102,7 @@ module.exports = (aClass, aOptions)->
           else if er instanceof Error
             throw er
           else
-            throw Error('Uncaught, unspecified "error" event.')
+            throw Error("Uncaught, unspecified 'error' event.")
           return
         return unless listeners
         @domain.enter() if @domain and this isnt process
@@ -139,8 +138,8 @@ module.exports = (aClass, aOptions)->
         evt.end()
       setMaxListeners: (n)->
         throw TypeError('n must be a positive number') if not isNumber(n) or n < 0 or isNaN(n)
-        if not @hasOwnProperty("_maxListeners")
-          defineProperty this, "_maxListeners", n
+        if not @hasOwnProperty('_maxListeners')
+          defineProperty this, '_maxListeners', n
         else
           @_maxListeners = n
         @
@@ -163,14 +162,14 @@ module.exports = (aClass, aOptions)->
           result = data[type].length
         result
       off: (type, listener) ->
-        throw TypeError listener + " is not a function" if not isFunction listener
-        return this unless @hasOwnProperty("_events")
+        throw TypeError listener + ' is not a function' if not isFunction listener
+        return this unless @hasOwnProperty('_events')
         data = @_events
         return this unless data[type]
         listeners = data[type]
         if (listeners is listener) or (listeners.listener is listener)
           delete data[type] 
-          @emit "removeListener", type, listener if data.removeListener
+          @emit 'removeListener', type, listener if data.removeListener
         else if isObject listeners
           i = listeners.length
           while (--i >= 0)
@@ -185,7 +184,7 @@ module.exports = (aClass, aOptions)->
             listeners.length = 1
           else
             listeners.splice i, 1
-          @emit "removeListener", type, listener if data.removeListener
+          @emit 'removeListener', type, listener if data.removeListener
         this
       removeAllListeners: (type)->
         return this unless @hasOwnProperty('_events')
@@ -229,36 +228,5 @@ module.exports = (aClass, aOptions)->
     listeners: methods.listeners
   #End Class Eventable
 
-  if not aClass?
-    aClass = Eventable
-  else if not aClass::emit
-    if not aOptions? or not (aOptions.include or aOptions.exclude)
-      extend aClass, Eventable
-      extend aClass::, Eventable::
-    else
-      vIncludes = aOptions.include
-      if vIncludes
-        vIncludes = [vIncludes] if not isArray vIncludes
-      else
-        vIncludes = []
-      vIncludes.push 'emit'
-      vExcludes = aOptions.exclude
-      if vExcludes
-        vExcludes = [vExcludes] if not isArray vExcludes
-      else
-        vExcludes = []
-      filter = (k)->
-        result = vIncludes.length and not vExcludes.length
-        if result
-          result = k in vIncludes
-        else
-          result = not (k in vExcludes)
-        result
-      extendFilter aClass, Eventable, filter
-      extendFilter aClass::, Eventable::, filter
-    if aOptions?
-      injectMethods(aClass::, aOptions.methods) if aOptions.methods instanceof Object
-      injectMethods(aClass, aOptions.classMethods) if aOptions.classMethods instanceof Object
-  aClass
-
+module.exports = customAbility getEventableClass, 'emit', true
 
