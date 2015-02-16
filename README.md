@@ -108,15 +108,16 @@ emitter.emit('test', arg1, arg2/*…args*/); // No listeners invoked
 
 Add the event-able ability to the class directly.
 
-* `options`*(object)*
-  * `include`*(array|string)*: only these emitter methods will be added to the class
-  * `exclude`*(array|string)*: theses emitter methods would not be added to the class
-  * `methods`*(object)*: hooked methods to the class
+* `class`: the class to be injected the ability.
+* `options` *(object)*: optional options
+  * `include` *(array|string)*: only these emitter methods will be added to the class
+  * `exclude` *(array|string)*: theses emitter methods would not be added to the class
+  * `methods` *(object)*: hooked methods to the class
     * key: the method name to hook.
     * value: the new method function
       * use `this.super()` to call the original method.
       * `this.self` is the original `this` object.
-  * `classMethods`*(object)*: hooked class methods to the class
+  * `classMethods` *(object)*: hooked class methods to the class
 
 **Note**: the `emit` is always added to the class.
 
