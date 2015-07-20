@@ -1,4 +1,4 @@
-### events-ex [![Build Status](https://img.shields.io/travis/snowyu/events-ex.js/master.png)](http://travis-ci.org/snowyu/events-ex.js) [![npm](https://img.shields.io/npm/v/events-ex.svg)](https://npmjs.org/package/events-ex) [![downloads](https://img.shields.io/npm/dm/events-ex.svg)](https://npmjs.org/package/events-ex) [![license](https://img.shields.io/npm/l/events-ex.svg)](https://npmjs.org/package/events-ex) 
+### events-ex [![Build Status](https://img.shields.io/travis/snowyu/events-ex.js/master.png)](http://travis-ci.org/snowyu/events-ex.js) [![npm](https://img.shields.io/npm/v/events-ex.svg)](https://npmjs.org/package/events-ex) [![downloads](https://img.shields.io/npm/dm/events-ex.svg)](https://npmjs.org/package/events-ex) [![license](https://img.shields.io/npm/l/events-ex.svg)](https://npmjs.org/package/events-ex)
 
 
 Browser-friendly enhanced events most compatible with standard node.js and coffee-script. It's modified from [event-emitter](https://github.com/medikoo/event-emitter) mainly. It can add event-able to your class directly.
@@ -15,15 +15,15 @@ Browser-friendly enhanced events most compatible with standard node.js and coffe
 
 * Difference with [node events](nodejs.org/api/events.html)
   - domain is not supported yet(TODO)
-  + **`broken change`**: The event object bubbling Supports 
-    + the event object as listener's "this" object. 
+  + **`broken change`**: The event object bubbling Supports
+    + the event object as listener's "this" object.
     + return the result property of event object to emitter.
-    + prevent the rest of listener from be excuted if set the stopped property of event object to true 
+    + prevent the rest of listener from be excuted if set the stopped property of event object to true
     * **`broken change`**: the `emit` return the result of listeners's callback function instead of the successful state.
     * **`broken change`**: the `this` object of listeners' callback function is the `Event` Object instead of the emitter object.
       * the emitter object is put into the `target` property of the `Event` Object.
 * Difference with [event-emitter](https://github.com/medikoo/event-emitter)
-  + **`broken change`**: The event object bubbling Supports(see above) 
+  + **`broken change`**: The event object bubbling Supports(see above)
   + add the defaultMaxListeners class property to keep compatible with node events.
   + add the setMaxListeners method to keep compatible with node events.
   + add `error`, `newListener` and `removeListener` events to keep compatible with node events.
@@ -34,7 +34,7 @@ Browser-friendly enhanced events most compatible with standard node.js and coffe
 ### Installation
 
 	$ npm install events-ex
-	
+
 To port it to Browser or any other (non CJS) environment, use your favorite CJS bundler. No favorite yet? Try: [Browserify](http://browserify.org/), [Webmake](https://github.com/medikoo/modules-webmake) or [Webpack](http://webpack.github.io/)
 
 ### Usage
@@ -43,10 +43,11 @@ To port it to Browser or any other (non CJS) environment, use your favorite CJS 
 Add the event-able feature to your class directly:
 
 ```coffee
-# advanced usage see API topic.
+
 eventable = require('events-ex/eventable')
 
 class MyClass
+  # advanced usage see API topic.
   eventable MyClass
 
 my = new MyClass
@@ -58,23 +59,40 @@ my.emit 'event'
 
 ```
 
+the following is javascript:
+
+```js
+var eventable = require('events-ex/eventable');
+
+function MyClass() {}
+
+eventable(MyClass);
+
+var my = new MyClass;
+
+my.on('event', function() {
+  console.log('event occur');
+});
+
+my.emit('event');
+```
+
 Node JS events Usage:
 
 ```coffee
-
 EventEmitter = require('events-ex')
 inherits     = require('inherits-ex')
 
-# Demo the event object bubbling usage:
 class MyDb
   inherits MyDb, EventEmitter
   get: (key)->
+    # Demo the event object bubbling usage:
     result = @emit 'getting', key
     if isObject result
       return if result.state is ABORT
       return result.result if result.state is DONE
     _get(key)
-    
+
 ```
 
 event-emitter usage:
@@ -164,13 +182,13 @@ hasListeners(emitter, 'foo'); // false
 
 #### pipe(source, target[, emitMethodName]) _(events-ex/pipe)_
 
-Pipes all events from _source_ emitter onto _target_ emitter (all events from _source_ emitter will be emitted also on _target_ emitter, but not other way).  
-Returns _pipe_ object which exposes `pipe.close` function. Invoke it to close configured _pipe_.  
+Pipes all events from _source_ emitter onto _target_ emitter (all events from _source_ emitter will be emitted also on _target_ emitter, but not other way).
+Returns _pipe_ object which exposes `pipe.close` function. Invoke it to close configured _pipe_.
 It works internally by redefinition of `emit` method, if in your interface this method is referenced differently, provide its name (or symbol) with third argument.
 
 #### unify(emitter1, emitter2) _(events-ex/unify)_
 
-Unifies event handling for two objects. Events emitted on _emitter1_ would be also emitter on _emitter2_, and other way back.  
+Unifies event handling for two objects. Events emitted on _emitter1_ would be also emitter on _emitter2_, and other way back.
 Non reversible.
 
 ```javascript
