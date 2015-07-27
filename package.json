@@ -1,6 +1,6 @@
 {
   "name": "events-ex",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Browser-friendly enhanced events most compatible with standard node.js, it's powerful eventable ability.",
   "contributors": [
     {
@@ -35,7 +35,7 @@
     "url": "git://github.com/snowyu/events-ex.js.git"
   },
   "dependencies": {
-    "custom-ability": "^1.3.5",
+    "custom-ability": "^1.4.0",
     "es5-ext": "~0.10.7",
     "util-ex": "^0.3.10"
   },
