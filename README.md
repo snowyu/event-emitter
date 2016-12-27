@@ -54,6 +54,8 @@ my = new MyClass
 
 my.on 'event', ->
   console.log 'event occur'
+  # be care: @(this) is the event object. not the `my` instance.
+  # the my instance is @target.
 
 my.emit 'event'
 
