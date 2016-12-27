@@ -101,25 +101,26 @@ event-emitter usage:
 
 var ee = require('event-ex/event-emitter');
 
-var emitter = ee({}), listener;
+var MyClass = function () { /* .. */ };
+ee(MyClass.prototype); // All instances of MyClass will expose event-emitter interface
+
+var emitter = new MyClass(), listener;
 
 emitter.on('test', listener = function (args) {
-  // …emitter logic
+  // … react to 'test' event
 });
 
 emitter.once('test', function (args) {
-  // …invoked only once(!)
-  //and can return result to emit.
-  this.result = 18;
+  // … react to first 'test' event (invoked only once!)
 });
 
-//return the result is 18.
-var result = emitter.emit('test', arg1, arg2/*…args*/); // Two above listeners invoked
+emitter.emit('test', arg1, arg2/*…args*/); // Two above listeners invoked
 emitter.emit('test', arg1, arg2/*…args*/); // Only first listener invoked
 
 emitter.off('test', listener);              // Removed first listener
 emitter.emit('test', arg1, arg2/*…args*/); // No listeners invoked
 ```
+
 ### API
 
 #### eventable(class[, options]) _(events-ex/eventable)_
