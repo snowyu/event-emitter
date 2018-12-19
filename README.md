@@ -82,8 +82,11 @@ my.emit('event');
 Node JS events Usage:
 
 ```coffee
+## Coffee-script demo bubbling usage:
 EventEmitter = require('events-ex')
 inherits     = require('inherits-ex')
+ABORT = -1
+DONE = 0
 
 class MyDb
   inherits MyDb, EventEmitter
@@ -95,6 +98,54 @@ class MyDb
       return result.result if result.state is DONE
     _get(key)
 
+db = new MyDb
+db.on 'getting', (key)->
+  result = myGet(key);
+  if result?
+    # get the key succ
+    this.result =
+      state: DONE
+      result: result
+  else if result is null
+    # abort default get key.
+    this.result = state: ABORT;
+    # this.stopped = true # it will skip other listeners if true
+```
+
+```js
+// js demo bubbling usage:
+let EventEmitter = require('events-ex')
+let isObject = require('util-ex/lib/is/type/object')
+const ABORT = -1
+const DONE = 0
+
+class MyDb extends EventEmitter {
+  get(key) {
+    // Demo the event object bubbling usage:
+    let result = this.emit('getting', key)
+    if(isObject(result)) {
+      if (result.state === ABORT) return
+      if (result.state === DONE)  return result.result
+    }
+    return _get(key)
+  }
+}
+
+let db = new MyDb
+db.on('getting', function(key){
+  result = myGet(key);
+  if (result != null) {
+    // get the key succ
+    this.result = {
+      state: DONE,
+      result: result,
+    }
+  } else if (result === null) {
+    // abort default get key.
+    this.result = {state: ABORT};
+    // this.stopped = true // it will skip other listeners if true
+  }
+})
 ```
 
 event-emitter usage:
@@ -131,8 +182,10 @@ Add the event-able ability to the class directly.
 
 * `class`: the class to be injected the ability.
 * `options` *(object)*: optional options
-  * `include` *(array|string)*: only these emitter methods will be added to the class
-  * `exclude` *(array|string)*: theses emitter methods would not be added to the class
+  * `include` *(string[]|string)*: only these emitter methods will be added to the class
+    * **NOTE:** static method should use the prefix '@' with name.
+  * `exclude` *(string[]|string)*: theses emitter methods would not be added to the class
+    * **NOTE:** static method should use the prefix '@' with name.
   * `methods` *(object)*: hooked methods to the class
     * key: the method name to hook.
     * value: the new method function
@@ -147,8 +200,8 @@ Add the event-able ability to the class directly.
     exec: -> console.log "my original exec"
 
   class MyClass
-    # only 'on', 'off', 'emit' added to the class
-    eventable MyClass, include: ['on', 'off', 'emit']
+    # only 'on', 'off', 'emit' and static methods 'listenerCount' added to the class
+    eventable MyClass, include: ['on', 'off', 'emit', '@listenerCount']
 
   # add the eventable ability to OtherClass and inject the exec method of OtherClass.
   eventable OtherClass, methods:
