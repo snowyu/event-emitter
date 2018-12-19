@@ -12,7 +12,7 @@ module.exports = function (eventable, assert) {
 
   it('should include methods', function(){
     var My = function(){};
-    eventable(My, {include: ['on', 'off', 'listenerCount']});
+    eventable(My, {include: ['on', 'off', '@listenerCount']});
     var keys = Object.keys(My);
     assert.deepEqual(keys, ['listenerCount']);
     keys = Object.keys(My.prototype);
