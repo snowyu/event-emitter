@@ -40,6 +40,7 @@
     "util-ex": "^0.3.10"
   },
   "devDependencies": {
+    "coffee-script": "^1.12.7",
     "pre-commit": "~1.0.7",
     "tad": "~0.2.1"
   },
