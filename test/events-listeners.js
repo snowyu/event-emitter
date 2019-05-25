@@ -33,8 +33,10 @@ module.exports = function listenersTest(events, t) {
     e1.on('foo', listener);
     var fooListeners = e1.listeners('foo');
     t.deepEqual(e1.listeners('foo'), [listener]);
+    t.equal(e1.listenerCount('foo'), 1);
 
     e1.removeAllListeners('foo');
+    t.equal(e1.listenerCount('foo'), 0)
     t.deepEqual(e1.listeners('foo'), []);
     t.deepEqual(fooListeners, [listener]);
 

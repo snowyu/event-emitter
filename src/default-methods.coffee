@@ -150,11 +150,14 @@ getEventableMethods = (aClass)->
           result = data[type].slice()
         result
       listenerCount: (emitter, type)->
+        if typeof emitter == 'string'
+          type = emitter
+          emitter = this
         data = emitter._events
         if not (data and data[type])
           result = 0
         else if isFunction data[type]
-          reuslt = 1
+          result = 1
         else
           result = data[type].length
         result

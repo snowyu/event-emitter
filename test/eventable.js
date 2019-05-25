@@ -36,6 +36,7 @@ module.exports = function (eventable, assert) {
     assert.deepEqual(keys, [
       'emit',
       'addListener',
+      'listenerCount',
       'removeListener',
       'removeAllListeners',
       'once',
@@ -50,6 +51,7 @@ module.exports = function (eventable, assert) {
     assert.deepEqual(keys, [
       'emit',
       'addListener',
+      'listenerCount',
       'removeListener',
       'removeAllListeners',
       'once',
@@ -66,6 +68,7 @@ module.exports = function (eventable, assert) {
     var keys = Object.keys(My.prototype).sort();
     assert.deepEqual(keys, [
       'addListener',
+      'listenerCount',
       'removeListener',
       'removeAllListeners',
       'once',
