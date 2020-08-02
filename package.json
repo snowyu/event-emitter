@@ -35,18 +35,18 @@
     "url": "git://github.com/snowyu/events-ex.js.git"
   },
   "dependencies": {
-    "custom-ability": "^1.4.0",
-    "es5-ext": "~0.10.7",
-    "util-ex": "^0.3.10"
+    "custom-ability": "^1.5.0",
+    "es5-ext": "~0.10.53",
+    "util-ex": "^0.3.15"
   },
   "devDependencies": {
     "coffee-script": "^1.12.7",
     "pre-commit": "~1.0.7",
-    "tad": "~0.2.1"
+    "tad": "~3.0.1"
   },
   "scripts": {
     "prepublish": "coffee -o . -c src/*.coffee",
-    "test": "node ./node_modules/tad/bin/tad"
+    "test": "tad"
   },
   "pre-commit": {
     "run": [
