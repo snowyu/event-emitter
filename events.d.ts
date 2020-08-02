@@ -14,7 +14,7 @@ export interface Event {
    */
   target: EventEmitter;
   /**
-   * pass stopped true to stop bullbing event.
+   * pass stopped true to stop bubbling event.
    */
   stopped: boolean;
   /**
@@ -39,7 +39,7 @@ export class EventEmitter {
   once(eventName: string, listener: ListenerCallbackFunc): EventEmitter;
   off(eventName: string, listener: ListenerCallbackFunc): EventEmitter;
   emit(eventName: string, ...args: any[]);
-  removeAllListeners(eventName: string): EventEmitter;
+  removeAllListeners(eventName?: string): EventEmitter;
   setCache(cache: Event[]): Event[];
   setMaxListeners(n: number): EventEmitter;
   listeners(eventName: string): ListenerCallbackFunc[];
