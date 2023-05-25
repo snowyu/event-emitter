@@ -34,19 +34,45 @@
     "type": "git",
     "url": "git://github.com/snowyu/events-ex.js.git"
   },
+  "main": "./lib/index.js",
+  "module": "./src/index.js",
+  "type": "commonjs",
   "dependencies": {
-    "custom-ability": "^1.5.0",
-    "es5-ext": "~0.10.53",
-    "util-ex": "^0.3.15"
+    "custom-ability": "^2.0.0-alpha.3",
+    "util-ex": "^2.0.0-alpha.8"
   },
   "devDependencies": {
-    "coffee-script": "^1.12.7",
-    "pre-commit": "~1.0.7",
-    "tad": "~3.0.1"
+    "@antfu/eslint-config": "^0.39.3",
+    "@babel/cli": "^7.21.5",
+    "@babel/core": "^7.21.8",
+    "@babel/plugin-proposal-dynamic-import": "^7.18.6",
+    "@babel/plugin-transform-modules-commonjs": "^7.21.5",
+    "@babel/register": "^7.21.0",
+    "chai": "^4.3.7",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-tsdoc": "^0.2.17",
+    "mocha": "^10.2.0",
+    "prettier": "^2.8.8",
+    "typedoc": "^0.24.7",
+    "typedoc-plugin-markdown": "^3.15.3",
+    "typescript": "^5.0.4"
   },
   "scripts": {
-    "prepublish": "coffee -o . -c src/*.coffee",
-    "test": "tad"
+    "build": "npm run build.cjs && npm run build.ts && npm run doc.md",
+    "build.cjs": "babel src --out-dir lib --config-file ./.babelrc",
+    "build.ts": "tsc --declaration --emitDeclarationOnly --outDir lib && cp src/index.d.ts lib/",
+    "clean": "rm -fr web docs lib",
+    "clean.doc": "rm -fr web docs",
+    "clean.ts": "rm -fr lib/*.d.ts",
+    "clean.lib": "rm -fr lib",
+    "doc": "typedoc --plugin none --out web ./src",
+    "doc.md": "typedoc --plugin typedoc-plugin-markdown --out docs ./src",
+    "lint": "npx eslint --config .eslintrc.yml src",
+    "lint.fix": "npm run lint -- --fix",
+    "release": "npm run clean && npm run build && git add docs && git ci -m 'docs: update API docs' && npx commit-and-tag-version -s",
+    "release.alpha": "npm run release -- --prerelease alpha",
+    "test": "mocha"
   },
   "pre-commit": {
     "run": [
