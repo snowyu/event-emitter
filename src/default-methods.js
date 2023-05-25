@@ -121,6 +121,22 @@ export function getEventableMethods(aClass) {
       }
     },
 
+    async emitAsync(type, msg) {
+      const r = _emit.apply(this, arguments)
+      if (!r) return
+      const args = r.args
+      const listeners = r.listeners
+      const evt = Event(this)
+      try {
+        for (const listener of listeners) {
+          await _notify(listener, evt, args);
+          if (evt.stopped) {break}
+        }
+      } finally {
+        return evt.end()
+      }
+    },
+
     setMaxListeners(n) {
       if (!isNumber(n) || n < 0 || isNaN(n)) throw new TypeError('n must be a positive number')
       if (!this.hasOwnProperty('_maxListeners')) {
