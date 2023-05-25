@@ -5,29 +5,28 @@ Browser-friendly enhanced events most compatible with standard node.js and coffe
 
 ### Features
 
-* rewrite the core architecture
+* Rewrite of the core architecture for improved performance and more powerful event-able ability
 * keep most compatible with [node events](nodejs.org/api/events.html) and [event-emitter](https://github.com/medikoo/event-emitter)
-+ more powerful event-able ability
-* hookable event system
-* emit async supports
+* Hookable event system for more control over event handling
+* Supports async event emitting
 
 ### Differences
 
 * Difference with [node events](https://nodejs.org/api/events.html)
-  + **`broken change`**: The event object bubbling Supports
+  + **`broken change`**: The event object supports bubbling
     + the event object as listener's "this" object.
-    + return the result property of event object to emitter.
-    + prevent the rest of listener from be excuted if set the stopped property of event object to true
-    * **`broken change`**: the `emit` return the result of listeners's callback function instead of the successful state.
-    * **`broken change`**: the `this` object of listeners' callback function is the `Event` Object instead of the emitter object.
-      * the emitter object is put into the `target` property of the `Event` Object.
+    + return the result property of event object to the emitter.
+    + prevent the rest of listener from be executed if the stopped property of the event object is set to true
+    * **`broken change`**: The `emit` return the result of listeners's callback function instead of the successful state.
+    * **`broken change`**: The `this` object of listeners' callback function is the `Event` Object instead of the emitter object.
+      * The emitter object is put into the `target` property of the `Event` Object.
 * Difference with [event-emitter](https://github.com/medikoo/event-emitter)
-  + **`broken change`**: The event object bubbling Supports(see above)
-  + add the defaultMaxListeners class property to keep compatible with node events.
-  + add the setMaxListeners method to keep compatible with node events.
-  + add `error`, `newListener` and `removeListener` events to keep compatible with node events.
-  + add listeners() method to keep compatible with node events.
-  + add listenerCount() class method to keep compatible with node events.
+  + **`broken change`**: The event object supports bubbling(see above)
+  + Adds the defaultMaxListeners class property to keep compatibility with node events.
+  + Adds the setMaxListeners method to keep compatible with node events.
+  + Adds `error`, `newListener` and `removeListener` events to keep compatibility with node events.
+  + Adds listeners() method to keep compatibility with node events.
+  + Adds listenerCount() class method to keep compatibility with node events.
 
 
 ### Installation
