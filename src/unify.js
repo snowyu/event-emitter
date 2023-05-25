@@ -7,6 +7,13 @@ const create = Object.create
 const hasOwnProperty = Object.prototype.hasOwnProperty
 const d = { configurable: true, enumerable: false, writable: true }
 
+/**
+ * Unifies the event listeners of two event emitter objects so that they share the same set of listeners for each event.
+ *
+ * @param {EventEmitter} e1 - The first event emitter object.
+ * @param {EventEmitter} e2 - The second event emitter object.
+ * @throws {TypeError} - If either of the arguments is not an event emitter object.
+ */
 export function unify(e1, e2) {
 	(validObject(e1) && validObject(e2))
 	if (!hasOwnProperty.call(e1, '_events')) {

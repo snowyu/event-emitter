@@ -9,6 +9,15 @@ const getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor
 const arrFrom        = Array.from
 const emit           = methods.emit
 
+/**
+ * Creates a pipeline between two event emitters, so that any events emitted by the first emitter are also emitted by the second emitter.
+ *
+ * @param {EventEmitter} e1 - The first event emitter.
+ * @param {EventEmitter} e2 - The second event emitter.
+ * @param {string} [name='emit'] - The name of the event to pipe (defaults to 'emit').
+ * @returns {Object} - An object with a `close` method that removes the pipeline between the two event emitters.
+ * @throws {TypeError} - If either of the arguments is not an event emitter object.
+ */
 export function pipe(e1, e2/* , name */) {
 	let pipes
 

@@ -1,9 +1,15 @@
-import Eventable from './eventable'
+import eventable from './eventable'
 
-const removeAllListeners = Eventable().methods.removeAllListeners;
+const removeAllListeners = eventable().methods.removeAllListeners;
 
-export function allOff(emitter/* , type */) {
-	const type = arguments[1];
+/**
+ * Removes all listeners for a specific event or all events from an event emitter.
+ *
+ * @param {EventEmitter} emitter - The event emitter to remove listeners from.
+ * @param {string} [type] - The event to remove listeners for. If not provided, all listeners for all events will be removed.
+ * @returns {EventEmitter} - The event emitter with all listeners removed.
+ */
+export function allOff(emitter, type) {
   return removeAllListeners.call(emitter, type);
 };
 
