@@ -1,45 +1,19 @@
 import {defineProperty, isArray, isFunction, isNumber, isObject, isUndefined} from 'util-ex'
+import {Event} from './event';
 
 const create          = Object.create
 const UnCAUGHT_ERR    = "Uncaught, unspecified 'error' event."
 const slice           = Array.prototype.slice
 
 export function getEventableMethods(aClass) {
-  let eventCache = [];
-
-  function Event(target) {
-      if (!(this instanceof Event)) {
-        let evt = eventCache.pop()
-        if (!evt) {
-          evt = new Event(target)
-        } else {
-          evt.init(target)
-        }
-        return evt
-      }
-      this.init(target)
-    }
-
-    Event.prototype.init = function(target) {
-      this.target = target
-      this.stopped = false
-      this.result = undefined
-    }
-
-    Event.setCache = function(cache) {
-      eventCache = cache
-    }
-
-    Event.prototype.end = function() {
-      eventCache.push(this)
-      return this.result
-    }
-
-    Event.prototype.pop = function() {
-      eventCache.pop()
-    }
-
   return {
+    /**
+     * Adds a listener function to the specified event type.
+     * @param {string} type - The event type to listen for.
+     * @param {Function} listener - The listener function to be called when the event is emitted.
+     * @returns {EventEmitter} The EventEmitter instance to allow chaining.
+     * @throws {TypeError} If the listener is not a function.
+     */
     on(type, listener) {
       if (!isFunction(listener)) {throw new TypeError(listener + ' is not a function')}
       let data
@@ -82,6 +56,13 @@ export function getEventableMethods(aClass) {
       return this
     },
 
+    /**
+     * Adds a one-time listener function to the specified event type.
+     * @param {string} type - The event type to listen for.
+     * @param {Function} listener - The listener function to be called once when the event is emitted.
+     * @returns {EventEmitter} The EventEmitter instance to allow chaining.
+     * @throws {TypeError} If the listener is not a function.
+     */
     once(type, listener) {
       if (!isFunction(listener)) {throw new TypeError(listener + ' is not a function' )}
       let fired = false
@@ -100,8 +81,11 @@ export function getEventableMethods(aClass) {
     },
 
 
-    setCache: Event.setCache,
-
+    /**
+     * Emits the specified event type with the given arguments.
+     * @param {...*} args - The event type followed by any number of arguments to be passed to the listener functions.
+     * @returns {*} The result of the event.
+     */
     emit(/* type, msg , ... */) {
       const r = _emit.apply(this, arguments)
       if (!r) {return}
@@ -122,6 +106,11 @@ export function getEventableMethods(aClass) {
       }
     },
 
+    /**
+     * Asynchronously emits the specified event type with the given arguments.
+     * @param {...*} args - The event type followed by any number of arguments to be passed to the listener functions.
+     * @returns {Promise<*>} A promise that resolves with the result of the event.
+     */
     async emitAsync(/* type, msg , ... */) {
       const r = _emit.apply(this, arguments)
       if (!r) {return}
@@ -178,6 +167,13 @@ export function getEventableMethods(aClass) {
       return result
     },
 
+    /**
+     * Removes a listener function from the specified event type.
+     * @param {string} type - The event type to remove the listener from.
+     * @param {Function} listener - The listener function to be removed.
+     * @returns {EventEmitter} The EventEmitter instance to allow chaining.
+     * @throws {TypeError} If the listener is not a function.
+     */
     off(type, listener) {
       if (!isFunction(listener)) {throw new TypeError(listener + ' is not a function')}
       if (!this.hasOwnProperty('_events')) {return this}
@@ -208,6 +204,12 @@ export function getEventableMethods(aClass) {
       return this
     },
 
+    /**
+     * Removes all listener functions from the specified event type.
+     * @param {string} type - The event type to remove the listener from.
+     * @returns {EventEmitter} The EventEmitter instance to allow chaining.
+     * @throws {TypeError} If the listener is not a function.
+     */
     removeAllListeners(type) {
       if (!this.hasOwnProperty('_events')) {return this}
       const data = this._events

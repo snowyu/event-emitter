@@ -1,0 +1,49 @@
+/**
+ * Creates a new Event object instance that contains information about the event, such as the target element and the return value of the event.
+ * @class
+ * @classdesc Event Object that contains information about the event, such as the target element and the return value of the event.
+ * @param {EventEmitter} target - Who trigger the event
+ * @returns {Event} - The new Event instance.
+ */
+export function Event(target) {
+  if (!(this instanceof Event)) {
+    const evt = new Event(target)
+    return evt
+  }
+  this.init(target)
+}
+
+/**
+ * Initializes the event with the target object.
+ * @param {EventEmitter} target - The target object for the event.
+ */
+Event.prototype.init = function(target) {
+  /**
+   * Who trigger the event
+   * @type {Object}
+   * @public
+   */
+  this.target = target
+  /**
+   * Whether stop the bubbling event
+   * @type {boolean}
+   * @public
+   */
+  this.stopped = false
+  /**
+   * Keep your event result here if any.
+   * @type {*}
+   * @public
+   */
+  this.result = undefined
+}
+
+/**
+ * Ends the event and returns the result.
+ * @returns {*} The result of the event.
+ */
+Event.prototype.end = function() {
+  return this.result
+}
+
+export default Event
