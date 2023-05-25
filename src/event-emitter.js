@@ -1,9 +1,9 @@
-import Eventable from './eventable'
+import eventable from './eventable'
 
 const create = Object.create;
 const defineProperties = Object.defineProperties;
 
-export const methods = Eventable().methods;
+export const methods = eventable().methods;
 
 const descriptors = {
   on: {
@@ -30,7 +30,7 @@ const base = defineProperties({}, descriptors);
  * @param {Object} [o] the optional instance to eventable
  * @returns o or new Event instance
  */
-export function eventEmitter(o) {
+export function wrapEventEmitter(o) {
   if (o == null) {
     return create(base);
   } else {
@@ -39,4 +39,4 @@ export function eventEmitter(o) {
 };
 
 
-export default eventEmitter
+export default wrapEventEmitter
