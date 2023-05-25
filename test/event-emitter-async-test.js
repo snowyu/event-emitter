@@ -1,6 +1,6 @@
 import {assert} from "chai";
 
-import eventEmitter from '../src/event-emitter'
+import wrapEventEmitter from '../src/event-emitter'
 
 function wait(milliseconds){
   return new Promise(resolve => {
@@ -16,7 +16,7 @@ function deepEqu(act, expected, msg) {
 }
 describe('event-emitter-async', () => {
 	it('should emit', async () => {
-		var x = eventEmitter(), y, count, count2, count3, count4, test, listener1, listener2;
+		var x = wrapEventEmitter(), y, count, count2, count3, count4, test, listener1, listener2;
 		var defaultEvent = {stopped:false, result: undefined};
 		await x.emitAsync('none');
 

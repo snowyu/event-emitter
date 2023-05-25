@@ -1,6 +1,6 @@
 import {assert} from "chai";
 
-import pipe from '../src/pipe-async'
+import pipeAsync from '../src/pipe-async'
 import ee from '../src/event-emitter';
 
 describe('pipe-async', () => {
@@ -31,7 +31,7 @@ describe('pipe-async', () => {
 		assert.equal(count2, 0, "Pre pipe, y");
 		assert.equal(count3, 0, "Pre pipe, z");
 
-		vPipe = pipe(x, y);
+		vPipe = pipeAsync(x, y);
 		await x.emitAsync('foo');
 		assert.equal(count, 2, "Post pipe, x");
 		assert.equal(count2, 1, "Post pipe, y");
@@ -42,7 +42,7 @@ describe('pipe-async', () => {
 		assert.equal(count2, 2, "Post pipe, on y, y");
 		assert.equal(count3, 0, "Post pipe, on y, z");
 
-		pipe(x, z);
+		pipeAsync(x, z);
 		await x.emitAsync('foo');
 		assert.equal(count, 3, "Post pipe z, x");
 		assert.equal(count2, 3, "Post pipe z, y");
