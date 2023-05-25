@@ -9,15 +9,15 @@ const getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor
 const arrFrom        = Array.from
 const emit           = methods.emit
 
-export function pipe(e1, e2/*, name*/) {
+export function pipe(e1, e2/* , name */) {
 	let pipes
 
 	(validObject(e1) && validObject(e2))
 	let name = arguments[2]
-	if (name === undefined) name = 'emit'
+	if (name === undefined) {name = 'emit'}
 
 	const result = {
-		close: function () { arrRemove.call(pipes, e2); }
+		close() { arrRemove.call(pipes, e2) }
 	};
 	if (hasOwnProperty.call(e1, '__eePipes__')) {
 		(pipes = e1.__eePipes__).push(e2)

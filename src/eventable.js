@@ -2,7 +2,7 @@ import {createAbilityInjector} from 'custom-ability'
 import defineProperty from 'util-ex/lib/defineProperty'
 import defaultMethods from './default-methods'
 
-function getEventableClass(aClass, aOptions) {
+function getEventableClass(aClass) {
   function Eventable() {}
 
   if (aClass == null) {aClass = Eventable}

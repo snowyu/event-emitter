@@ -1,12 +1,11 @@
-import {defineProperty, isFunction, isObject, isNumber, isUndefined, isArray} from 'util-ex'
-import {EPipeStop, sequence} from 'promise-sequence'
+import {defineProperty, isArray, isFunction, isNumber, isObject, isUndefined} from 'util-ex'
 
 const create          = Object.create
 const UnCAUGHT_ERR    = "Uncaught, unspecified 'error' event."
 const slice           = Array.prototype.slice
 
 export function getEventableMethods(aClass) {
-  const eventCache = [];
+  let eventCache = [];
 
   function Event(target) {
       if (!(this instanceof Event)) {
@@ -42,7 +41,7 @@ export function getEventableMethods(aClass) {
 
   return {
     on(type, listener) {
-      if (!isFunction(listener)) throw new TypeError(listener + ' is not a function')
+      if (!isFunction(listener)) {throw new TypeError(listener + ' is not a function')}
       let data
       if (!this.hasOwnProperty('_events')) {
         data = create(null)
@@ -76,6 +75,7 @@ export function getEventableMethods(aClass) {
             'leak detected. %d %s listeners added. ' +
             'Use emitter.setMaxListeners() to increase limit.',
             data[type].length, type)
+          // eslint-disable-next-line no-console
           console.trace()
         }
       }
@@ -83,7 +83,7 @@ export function getEventableMethods(aClass) {
     },
 
     once(type, listener) {
-      if (!isFunction(listener)) throw new TypeError(listener + ' is not a function' )
+      if (!isFunction(listener)) {throw new TypeError(listener + ' is not a function' )}
       let fired = false
       const self = this
 
@@ -102,9 +102,9 @@ export function getEventableMethods(aClass) {
 
     setCache: Event.setCache,
 
-    emit(type, msg) {
+    emit(/* type, msg , ... */) {
       const r = _emit.apply(this, arguments)
-      if (!r) return
+      if (!r) {return}
       const args = r.args
       const listeners = r.listeners
       const evt = Event(this)
@@ -117,13 +117,14 @@ export function getEventableMethods(aClass) {
           ++i
         }
       } finally {
+        // eslint-disable-next-line no-unsafe-finally
         return evt.end()
       }
     },
 
-    async emitAsync(type, msg) {
+    async emitAsync(/* type, msg , ... */) {
       const r = _emit.apply(this, arguments)
-      if (!r) return
+      if (!r) {return}
       const args = r.args
       const listeners = r.listeners
       const evt = Event(this)
@@ -133,12 +134,13 @@ export function getEventableMethods(aClass) {
           if (evt.stopped) {break}
         }
       } finally {
+        // eslint-disable-next-line no-unsafe-finally
         return evt.end()
       }
     },
 
     setMaxListeners(n) {
-      if (!isNumber(n) || n < 0 || isNaN(n)) throw new TypeError('n must be a positive number')
+      if (!isNumber(n) || n < 0 || isNaN(n)) {throw new TypeError('n must be a positive number')}
       if (!this.hasOwnProperty('_maxListeners')) {
         defineProperty(this, '_maxListeners', n)
       } else {
@@ -195,13 +197,13 @@ export function getEventableMethods(aClass) {
         if (listeners.length === 1) {
           listeners.length = 0
           delete data[type]
-        } else if (listeners.length == 2) {
+        } else if (listeners.length === 2) {
           data[type] = listeners[(i ? 0 : 1)]
           listeners.length = 1
         } else {
           listeners.splice(i, 1)
         }
-        if (data.removeListener) this.emit('removeListener', type, listener)
+        if (data.removeListener) {this.emit('removeListener', type, listener)}
       }
       return this
     },
@@ -248,7 +250,7 @@ export default getEventableMethods
 function _emit(type, msg) {
   const data = this._events
   let listeners
-  if (data) listeners = data[type]
+  if (data) {listeners = data[type]}
   const args = slice.call(arguments, 1)
   if (type === 'error' && !msg) {
     msg = new Error(UnCAUGHT_ERR)
@@ -263,7 +265,7 @@ function _emit(type, msg) {
     if (!(msg instanceof Error)) {msg = new Error(UnCAUGHT_ERR)}
     throw msg
   }
-  if (!listeners) return
+  if (!listeners) {return}
   if (!isObject(listeners)) {
     listeners = [listeners]
   } else {

@@ -3,7 +3,7 @@ import value from './valid-object'
 const bind                    = Function.prototype.bind
 const keys                    = Object.keys
 
-export function forEach(obj, cb /*, thisArg, compareFn*/) {
+export function forEach(obj, cb /* , thisArg, compareFn */) {
   const thisArg = arguments[2]
   const compareFn = arguments[3]
   obj = Object(value(obj))

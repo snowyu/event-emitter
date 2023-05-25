@@ -7,7 +7,7 @@ function isValue(v) {
 	return v!== null && v!== undefined
 }
 
-export function hasListeners(obj/*, type*/) {
+export function hasListeners(obj/* , type */) {
 	if (!isValue(obj)) {throw new TypeError("Cannot use null or undefined")}
 
 	const type = arguments[1];
