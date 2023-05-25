@@ -1,15 +1,9 @@
-'use strict';
+import {assert} from "chai";
+import {inherits} from 'inherits-ex';
 
-var inherits = require('util-ex').inherits;
+import eventable from '../src/eventable'
 
-//t=Eventable; a=assert
-module.exports = function (eventable, assert) {
-  var result = {};
-
-  function it(title, fn) {
-    result[title]= fn;
-  }
-
+describe('eventable', () => {
   it('should include methods', function(){
     var My = function(){};
     eventable(My, {include: ['on', 'off', '@listenerCount']});
@@ -18,6 +12,7 @@ module.exports = function (eventable, assert) {
     keys = Object.keys(My.prototype);
     assert.deepEqual(keys, ['on','off']);
   });
+
   it('should include one method', function(){
     var My = function(){};
     eventable(My, {include: 'on'});
@@ -27,7 +22,6 @@ module.exports = function (eventable, assert) {
     assert.deepEqual(keys, ['on']);
   });
 
-
   it('should exclude methods', function(){
     var My = function(){};
     eventable(My, {exclude: ['on', 'off']});
@@ -35,6 +29,7 @@ module.exports = function (eventable, assert) {
     keys.sort();
     assert.deepEqual(keys, [
       'emit',
+      'emitAsync',
       'addListener',
       'listenerCount',
       'removeListener',
@@ -44,12 +39,14 @@ module.exports = function (eventable, assert) {
       'listeners'
     ].sort());
   });
+
   it('should exclude one method', function(){
     var My = function(){};
     eventable(My, {exclude: 'on'});
     var keys = Object.keys(My.prototype).sort();
     assert.deepEqual(keys, [
       'emit',
+      'emitAsync',
       'addListener',
       'listenerCount',
       'removeListener',
@@ -61,10 +58,9 @@ module.exports = function (eventable, assert) {
     ].sort());
   });
 
-
   it('should include and exclude methods', function(){
     var My = function(){};
-    eventable(My, {include: ['on', 'off'], exclude:['emit']});
+    eventable(My, {include: ['on', 'off'], exclude:['emit', 'emitAsync']});
     var keys = Object.keys(My.prototype).sort();
     assert.deepEqual(keys, [
       'addListener',
@@ -78,6 +74,7 @@ module.exports = function (eventable, assert) {
       'listeners'
     ].sort());
   });
+
   it('should inject methods', function(){
     var My = function(){};
     var oldExec, newExec;
@@ -90,6 +87,7 @@ module.exports = function (eventable, assert) {
     assert.equal(oldExec, true, 'should execute the original func');
     assert.equal(newExec, true, 'should execute the new func');
   });
+
   it('should not inject methods twice', function(){
     var newExec = 0;
     var oldExec = 0;
@@ -106,7 +104,5 @@ module.exports = function (eventable, assert) {
     assert.equal(oldExec, 1, 'should execute the original func once');
     assert.equal(newExec, 1, 'should execute the new func once');
   });
+});
 
-
-  return result;
-};
