@@ -3,18 +3,17 @@
 
 Browser-friendly enhanced events most compatible with standard node.js and coffee-script. It's modified from [event-emitter](https://github.com/medikoo/event-emitter) mainly. It can add event-able to your class directly.
 
-
 ### Features
 
 * rewrite the core architecture
 * keep most compatible with [node events](nodejs.org/api/events.html) and [event-emitter](https://github.com/medikoo/event-emitter)
 + more powerful event-able ability
 * hookable event system
+* emit async supports
 
 ### Differences
 
-* Difference with [node events](nodejs.org/api/events.html)
-  - domain is not supported yet(TODO)
+* Difference with [node events](https://nodejs.org/api/events.html)
   + **`broken change`**: The event object bubbling Supports
     + the event object as listener's "this" object.
     + return the result property of event object to emitter.
@@ -33,43 +32,34 @@ Browser-friendly enhanced events most compatible with standard node.js and coffe
 
 ### Installation
 
-	$ npm install events-ex
-
-To port it to Browser or any other (non CJS) environment, use your favorite CJS bundler. No favorite yet? Try: [Browserify](http://browserify.org/), [Webmake](https://github.com/medikoo/modules-webmake) or [Webpack](http://webpack.github.io/)
+```bash
+npm install events-ex
+```
 
 ### Usage
 
+Extends from `EventEmitter`:
+
+```js
+import {EventEmitter} from 'events-ex';
+
+class MyClass extends EventEmitter {}
+```
 
 Add the event-able feature to your class directly:
 
-```coffee
+```js
+import {eventable} from 'events-ex';
 
-eventable = require('events-ex/eventable')
+class MyClass {}
 
-class MyClass
-  # advanced usage see API topic.
-  eventable MyClass
-
-my = new MyClass
-
-my.on 'event', ->
-  console.log 'event occur'
-  # be care: @(this) is the event object. not the `my` instance.
-  # the my instance is @target.
-
-my.emit 'event'
-
+// inject the eventable ability to MyClass
+eventable(MyClass);
 ```
 
-the following is javascript:
+Now uses it:
 
 ```js
-var eventable = require('events-ex/eventable');
-
-function MyClass() {}
-
-eventable(MyClass);
-
 var my = new MyClass;
 
 my.on('event', function() {
@@ -79,53 +69,19 @@ my.on('event', function() {
 my.emit('event');
 ```
 
-Node JS events Usage:
-
-```coffee
-## Coffee-script demo bubbling usage:
-EventEmitter = require('events-ex')
-inherits     = require('inherits-ex')
-ABORT = -1
-DONE = 0
-
-class MyDb
-  inherits MyDb, EventEmitter
-  get: (key)->
-    # Demo the event object bubbling usage:
-    result = @emit 'getting', key
-    if isObject result
-      return if result.state is ABORT
-      return result.result if result.state is DONE
-    _get(key)
-
-db = new MyDb
-db.on 'getting', (key)->
-  result = myGet(key);
-  if result?
-    # get the key succ
-    this.result =
-      state: DONE
-      result: result
-  else if result is null
-    # abort default get key.
-    this.result = state: ABORT;
-    # this.stopped = true # it will skip other listeners if true
-```
+Bubbling event usage:
 
 ```js
-// js demo bubbling usage:
-let EventEmitter = require('events-ex')
-let isObject = require('util-ex/lib/is/type/object')
-const ABORT = -1
-const DONE = 0
+import {EventEmitter, states} from 'events-ex';
+import {isObject} from 'util-ex';
 
 class MyDb extends EventEmitter {
   get(key) {
     // Demo the event object bubbling usage:
     let result = this.emit('getting', key)
     if(isObject(result)) {
-      if (result.state === ABORT) return
-      if (result.state === DONE)  return result.result
+      if (result.state === states.ABORT) return
+      if (result.state === states.DONE)  return result.result
     }
     return _get(key)
   }
@@ -137,12 +93,12 @@ db.on('getting', function(key){
   if (result != null) {
     // get the key succ
     this.result = {
-      state: DONE,
+      state: states.DONE,
       result: result,
     }
   } else if (result === null) {
     // abort default get key.
-    this.result = {state: ABORT};
+    this.result = {state: states.ABORT};
     // this.stopped = true // it will skip other listeners if true
   }
 })
@@ -152,12 +108,13 @@ event-emitter usage:
 
 ```javascript
 
-var ee = require('event-ex/event-emitter');
+import {wrapEventEmitter as ee} from 'events-ex';
 
-var MyClass = function () { /* .. */ };
+class MyClass { /* .. */ };
 ee(MyClass.prototype); // All instances of MyClass will expose event-emitter interface
 
-var emitter = new MyClass(), listener;
+const emitter = new MyClass();
+let listener;
 
 emitter.on('test', listener = function (args) {
   // … react to 'test' event
@@ -193,22 +150,26 @@ Add the event-able ability to the class directly.
       * `this.self` is the original `this` object.
   * `classMethods` *(object)*: hooked class methods to the class
 
-```coffee
-  eventable  = require('events-ex/eventable')
-  #OtherClass = require('OtherClass')
-  class OtherClass
-    exec: -> console.log "my original exec"
+```js
+  import {eventable} from 'events-ex'
 
-  class MyClass
-    # only 'on', 'off', 'emit' and static methods 'listenerCount' added to the class
-    eventable MyClass, include: ['on', 'off', 'emit', '@listenerCount']
+  class OtherClass {
+    exec() {console.log "my original exec"}
+  }
 
-  # add the eventable ability to OtherClass and inject the exec method of OtherClass.
-  eventable OtherClass, methods:
-    exec: ->
-      console.log "new exec"
-      @super() # call the original method
+  class MyClass {}
+    // only 'on', 'off', 'emit', 'emitAsync' and static methods 'listenerCount' added to the class
+  eventable(MyClass, include: ['on', 'off', 'emit', 'emitAsync', '@listenerCount'])
+
+  // add the eventable ability to OtherClass and inject the exec method of OtherClass.
+  eventable(OtherClass, {methods: {
+    exec() {
+      console.log("new exec")
+      this.super() //call the original method
+    }}
+  })
 ```
+
 #### allOff(obj) _(events-ex/all-off)_
 
 **keep compatible only**: the `removeAllListeners` has already been buildin.
@@ -221,8 +182,8 @@ Whether object has some listeners attached to the object.
 When `name` is provided, it checks listeners for specific event name
 
 ```javascript
+import {hasListeners, wrapEventEmitter as ee} from 'events-ex/has-listeners';
 var emitter = ee();
-var hasListeners = require('events-ex/has-listeners');
 var listener = function () {};
 
 hasListeners(emitter); // false
@@ -248,7 +209,7 @@ Unifies event handling for two objects. Events emitted on _emitter1_ would be al
 Non reversible.
 
 ```javascript
-var eeUnify = require('events-ex/unify');
+import {unify as eeUnify, wrapEventEmitter as ee} from 'events-ex';
 
 var emitter1 = ee(), listener1, listener3;
 var emitter2 = ee(), listener2, listener4;
