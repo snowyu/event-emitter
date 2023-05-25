@@ -1,35 +1,43 @@
-'use strict';
-
 // Benchmark comparing performance of event emit for many listeners
 // To run it, do following in memoizee package path:
 //
 // $ npm install eventemitter2 signals event-emitter
 // $ node benchmark/many-on.js
 
-var forEach    = require('es5-ext/object/for-each')
-  , pad        = require('es5-ext/string/#/pad')
+import forEach from '../src/util/object-for-each'
+import pad from '../src/util/string-pad'
 
-  , now = Date.now
+import createEventEmitter from '../src/event-emitter'
+import events from 'events'
+import eventEmitter from 'event-emitter'
+import eventEmitter2 from 'eventemitter2'
+import signals from 'signals'
 
-  , time, count = 1000000, i, data = {}
-  , eeX, ee, native, ee2, signals, a = {}, b = {};
+const now = Date.now
+const count = 1000000
+const data = {}
+let time
+let eeX, ee, native, ee2, signals
+const a = {}
+const  b = {}
+let i
 
 eeX = (function () {
-	var ee = require('../event-emitter')();
+	var ee = createEventEmitter();
 	ee.on('test', function () { return arguments; });
 	ee.on('test', function () { return arguments; });
 	return ee.on('test', function () { return arguments; });
 }());
 
 ee = (function () {
-	var ee = require('event-emitter')();
+	var ee = eventEmitter();
 	ee.on('test', function () { return arguments; });
 	ee.on('test', function () { return arguments; });
 	return ee.on('test', function () { return arguments; });
 }());
 
 native = (function () {
-	var ee = require('events');
+	var ee = events;
 	ee = new ee.EventEmitter();
 	ee.on('test', function () { return arguments; });
 	ee.on('test', function () { return arguments; });
@@ -37,7 +45,7 @@ native = (function () {
 }());
 
 ee2 = (function () {
-	var ee = require('eventemitter2');
+	var ee = eventEmitter2;
 	ee = new ee.EventEmitter2();
 	ee.on('test', function () { return arguments; });
 	ee.on('test', function () { return arguments; });
@@ -45,7 +53,7 @@ ee2 = (function () {
 }());
 
 signals = (function () {
-	var Signal = require('signals')
+	var Signal = signals
 	  , ee = { test: new Signal() };
 	ee.test.add(function () { return arguments; });
 	ee.test.add(function () { return arguments; });

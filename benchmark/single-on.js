@@ -6,36 +6,42 @@
 // $ npm install eventemitter2 signals, event-emitter
 // $ node benchmark/single-on.js
 
-var forEach    = require('es5-ext/object/for-each')
-  , pad        = require('es5-ext/string/#/pad')
+import forEach from '../src/util/object-for-each'
+import pad from '../src/util/string-pad'
 
-  , now = Date.now
+import createEventEmitter from '../src/event-emitter'
+import events from 'events'
+import eventEmitter from 'event-emitter'
+import eventEmitter2 from 'eventemitter2'
+import signals from 'signals'
 
-  , time, count = 1000000, i, data = {}
+const now = Date.now
+
+let time, count = 1000000, i, data = {}
   , eeX, ee, native, ee2, signals, a = {}, b = {};
 
 eeX = (function () {
-	var ee = require('../event-emitter');
+	var ee = createEventEmitter();
 	return ee().on('test', function () { return arguments; });
 }());
 
 ee = (function () {
-	var ee = require('event-emitter');
+	var ee = eventEmitter();
 	return ee().on('test', function () { return arguments; });
 }());
 
 native = (function () {
-	var ee = require('events');
+	var ee = events;
 	return (new ee.EventEmitter()).on('test', function () { return arguments; });
 }());
 
 ee2 = (function () {
-	var ee = require('eventemitter2');
+	var ee = eventEmitter2;
 	return (new ee.EventEmitter2()).on('test', function () { return arguments; });
 }());
 
 signals = (function () {
-	var Signal = require('signals')
+	var Signal = signals
 	  , ee = { test: new Signal() };
 	ee.test.add(function () { return arguments; });
 	return ee;
