@@ -25,5 +25,5 @@ function getEventableClass(aClass) {
   return Eventable;
 };
 
-export const Eventable = createAbilityInjector(getEventableClass, true);
-export default Eventable;
+export const eventable = createAbilityInjector(getEventableClass, true);
+export default eventable;
