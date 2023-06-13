@@ -1,32 +1,35 @@
 ### events-ex [![Build Status](https://img.shields.io/travis/snowyu/events-ex.js/master.png)](http://travis-ci.org/snowyu/events-ex.js) [![npm](https://img.shields.io/npm/v/events-ex.svg)](https://npmjs.org/package/events-ex) [![downloads](https://img.shields.io/npm/dm/events-ex.svg)](https://npmjs.org/package/events-ex) [![license](https://img.shields.io/npm/l/events-ex.svg)](https://npmjs.org/package/events-ex)
 
 
-Browser-friendly enhanced events most compatible with standard node.js and coffee-script. It's modified from [event-emitter](https://github.com/medikoo/event-emitter) mainly. It can add event-able to your class directly.
+Browser-friendly enhanced event emitter [ability][Ability] and class. It's modified from [event-emitter][event-emitter] mainly. It can add/inject the event-able [ability][Ability] to your any class.
 
 ### Features
 
 * Rewrite of the core architecture for improved performance and more powerful event-able ability
-* keep most compatible with [node events](nodejs.org/api/events.html) and [event-emitter](https://github.com/medikoo/event-emitter)
+* keep most compatible with [node events](nodejs.org/api/events.html) and [event-emitter][event-emitter]
 * Hookable event system for more control over event handling
-* Supports async event emitting
+* Supports async event emitting via `emitAsync` method.
 
 ### Differences
 
 * Difference with [node events](https://nodejs.org/api/events.html)
-  + **`broken change`**: The event object supports bubbling
-    + the event object as listener's "this" object.
-    + return the result property of event object to the emitter.
-    + prevent the rest of listener from be executed if the stopped property of the event object is set to true
+  + **`broken change`**: The event supports bubbling and interruption
+    + the `event object` as listener's "this" object:
+      * `result`: If set, the result is returned to the `Event Emitter`.
+      * `stopped`: If set to `true`, it prevents the remaining listeners from being executed.
+      * `target`: The `Event Emitter` object, which was originally the `this` object.
     * **`broken change`**: The `emit` return the result of listeners's callback function instead of the successful state.
     * **`broken change`**: The `this` object of listeners' callback function is the `Event` Object instead of the emitter object.
       * The emitter object is put into the `target` property of the `Event` Object.
+  * Adds async event emitting via `emitAsync` method.
 * Difference with [event-emitter](https://github.com/medikoo/event-emitter)
-  + **`broken change`**: The event object supports bubbling(see above)
+  + **`broken change`**: The event supports bubbling and interruption(see above)
   + Adds the defaultMaxListeners class property to keep compatibility with node events.
   + Adds the setMaxListeners method to keep compatible with node events.
   + Adds `error`, `newListener` and `removeListener` events to keep compatibility with node events.
   + Adds listeners() method to keep compatibility with node events.
   + Adds listenerCount() class method to keep compatibility with node events.
+  * Adds async event emitting via `emitAsync` method.
 
 
 ### Installation
@@ -37,7 +40,7 @@ npm install events-ex
 
 ### Usage
 
-Extends from `EventEmitter`:
+Extends from `EventEmitter` class:
 
 ```js
 import {EventEmitter} from 'events-ex';
@@ -45,21 +48,21 @@ import {EventEmitter} from 'events-ex';
 class MyClass extends EventEmitter {}
 ```
 
-Add the event-able feature to your class directly:
+Add/Inject the event-able [ability][Ability] to your class directly:
 
 ```js
 import {eventable} from 'events-ex';
 
-class MyClass {}
+class MyClass extends MyRoot {}
 
 // inject the eventable ability to MyClass
 eventable(MyClass);
 ```
 
-Now uses it:
+Now, you can use events in your class:
 
 ```js
-var my = new MyClass;
+const my = new MyClass;
 
 my.on('event', function() {
   console.log('event occur');
@@ -232,3 +235,5 @@ emitter2.emit('test'); // Invoked listener1, listener2, listener3 and listener4
 ```
 
 
+[event-emitter]: https://github.com/medikoo/event-emitter
+[Ability]: https://github.com/snowyu/custom-ability.js
