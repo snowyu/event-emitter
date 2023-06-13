@@ -2,7 +2,7 @@
  * Creates a new Event object instance that contains information about the event, such as the target element and the return value of the event.
  * @class
  * @classdesc Event Object that contains information about the event, such as the target element and the return value of the event.
- * @param {EventEmitter} target - Who trigger the event
+ * @param {import('./event-emitter').EventEmitter} target - Who trigger the event
  * @returns {Event} - The new Event instance.
  */
 export function Event(target) {
@@ -15,7 +15,7 @@ export function Event(target) {
 
 /**
  * Initializes the event with the target object.
- * @param {EventEmitter} target - The target object for the event.
+ * @param {import('./event-emitter').EventEmitter} target - The target object for the event.
  */
 Event.prototype.init = function(target) {
   /**

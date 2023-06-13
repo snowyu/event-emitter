@@ -1,6 +1,6 @@
 import defineProperty from 'util-ex/lib/defineProperty'
 
-import {methods} from './event-emitter'
+import {methods} from './wrap-event-emitter'
 import arrRemove from './util/array-remove'
 import validObject from './util/valid-object'
 
@@ -12,8 +12,8 @@ const emit           = methods.emit
 /**
  * Creates a pipeline between two event emitters, so that any events emitted by the first emitter are also emitted by the second emitter.
  *
- * @param {EventEmitter} e1 - The first event emitter.
- * @param {EventEmitter} e2 - The second event emitter.
+ * @param {import('./event-emitter').EventEmitter} e1 - The first event emitter.
+ * @param {import('./event-emitter').EventEmitter} e2 - The second event emitter.
  * @param {string} [name='emit'] - The name of the event to pipe (defaults to 'emit').
  * @returns {Object} - An object with a `close` method that removes the pipeline between the two event emitters.
  * @throws {TypeError} - If either of the arguments is not an event emitter object.

@@ -11,7 +11,7 @@ export function getEventableMethods(aClass) {
      * Adds a listener function to the specified event type.
      * @param {string} type - The event type to listen for.
      * @param {Function} listener - The listener function to be called when the event is emitted.
-     * @returns {EventEmitter} The EventEmitter instance to allow chaining.
+     * @returns {import('./event-emitter').EventEmitter} The EventEmitter instance to allow chaining.
      * @throws {TypeError} If the listener is not a function.
      */
     on(type, listener) {
@@ -60,7 +60,7 @@ export function getEventableMethods(aClass) {
      * Adds a one-time listener function to the specified event type.
      * @param {string} type - The event type to listen for.
      * @param {Function} listener - The listener function to be called once when the event is emitted.
-     * @returns {EventEmitter} The EventEmitter instance to allow chaining.
+     * @returns {import('./event-emitter').EventEmitter} The EventEmitter instance to allow chaining.
      * @throws {TypeError} If the listener is not a function.
      */
     once(type, listener) {
@@ -171,7 +171,7 @@ export function getEventableMethods(aClass) {
      * Removes a listener function from the specified event type.
      * @param {string} type - The event type to remove the listener from.
      * @param {Function} listener - The listener function to be removed.
-     * @returns {EventEmitter} The EventEmitter instance to allow chaining.
+     * @returns {import('./event-emitter').EventEmitter} The EventEmitter instance to allow chaining.
      * @throws {TypeError} If the listener is not a function.
      */
     off(type, listener) {
@@ -207,7 +207,7 @@ export function getEventableMethods(aClass) {
     /**
      * Removes all listener functions from the specified event type.
      * @param {string} type - The event type to remove the listener from.
-     * @returns {EventEmitter} The EventEmitter instance to allow chaining.
+     * @returns {import('./event-emitter').EventEmitter} The EventEmitter instance to allow chaining.
      * @throws {TypeError} If the listener is not a function.
      */
     removeAllListeners(type) {
