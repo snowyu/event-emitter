@@ -40,12 +40,12 @@ Renames and re-exports [getEventableMethods](default_methods.md#geteventablemeth
 | `emitAsync` | (...`args`: `any`) => `Promise`<`any`\> |
 | `listenerCount` | (`emitter`: `any`, `type`: `any`) => `any` |
 | `listeners` | (`type`: `any`) => `any` |
-| `off` | (`type`: `string`, `listener`: `Function`) => `EventEmitter` |
-| `on` | (`type`: `string`, `listener`: `Function`) => `EventEmitter` |
-| `once` | (`type`: `string`, `listener`: `Function`) => `EventEmitter` |
-| `removeAllListeners` | (`type`: `string`) => `EventEmitter` |
-| `setMaxListeners` | (`n`: `any`) => { on(type: string, listener: Function): EventEmitter; once(type: string, listener: Function): EventEmitter; emit(...args: any[]): any; emitAsync(...args: any[]): Promise<any\>; ... 4 more ...; removeAllListeners(type: string): EventEmitter; } |
+| `off` | (`type`: `string`, `listener`: `Function`) => [`EventEmitter`](../classes/event_emitter.EventEmitter.md) |
+| `on` | (`type`: `string`, `listener`: `Function`) => [`EventEmitter`](../classes/event_emitter.EventEmitter.md) |
+| `once` | (`type`: `string`, `listener`: `Function`) => [`EventEmitter`](../classes/event_emitter.EventEmitter.md) |
+| `removeAllListeners` | (`type`: `string`) => [`EventEmitter`](../classes/event_emitter.EventEmitter.md) |
+| `setMaxListeners` | (`n`: `any`) => { on(type: string, listener: Function): EventEmitter; once(type: string, listener: Function): EventEmitter; emit(...args: any[]): any; ... 5 more ...; removeAllListeners(type: string): EventEmitter; } |
 
 #### Defined in
 
-[src/default-methods.js:8](https://github.com/snowyu/events-ex.js/blob/892d26d/src/default-methods.js#L8)
+[src/default-methods.js:8](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/default-methods.js#L8)

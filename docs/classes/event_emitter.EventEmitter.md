@@ -1,8 +1,8 @@
-[events-ex](../README.md) / [Exports](../modules.md) / [index](../modules/index.md) / EventEmitter
+[events-ex](../README.md) / [Exports](../modules.md) / [event-emitter](../modules/event_emitter.md) / EventEmitter
 
 # Class: EventEmitter
 
-[index](../modules/index.md).EventEmitter
+[event-emitter](../modules/event_emitter.md).EventEmitter
 
 Class that represents an event emitter.
 
@@ -10,24 +10,24 @@ Class that represents an event emitter.
 
 ### Constructors
 
-- [constructor](index.EventEmitter.md#constructor)
+- [constructor](event_emitter.EventEmitter.md#constructor)
 
 ### Properties
 
-- [defaultMaxListeners](index.EventEmitter.md#defaultmaxlisteners)
+- [defaultMaxListeners](event_emitter.EventEmitter.md#defaultmaxlisteners)
 
 ### Methods
 
-- [emit](index.EventEmitter.md#emit)
-- [emitAsync](index.EventEmitter.md#emitasync)
-- [listenerCount](index.EventEmitter.md#listenercount)
-- [listeners](index.EventEmitter.md#listeners)
-- [off](index.EventEmitter.md#off)
-- [on](index.EventEmitter.md#on)
-- [once](index.EventEmitter.md#once)
-- [removeAllListeners](index.EventEmitter.md#removealllisteners)
-- [setMaxListeners](index.EventEmitter.md#setmaxlisteners)
-- [listenerCount](index.EventEmitter.md#listenercount-1)
+- [emit](event_emitter.EventEmitter.md#emit)
+- [emitAsync](event_emitter.EventEmitter.md#emitasync)
+- [listenerCount](event_emitter.EventEmitter.md#listenercount)
+- [listeners](event_emitter.EventEmitter.md#listeners)
+- [off](event_emitter.EventEmitter.md#off)
+- [on](event_emitter.EventEmitter.md#on)
+- [once](event_emitter.EventEmitter.md#once)
+- [removeAllListeners](event_emitter.EventEmitter.md#removealllisteners)
+- [setMaxListeners](event_emitter.EventEmitter.md#setmaxlisteners)
+- [listenerCount](event_emitter.EventEmitter.md#listenercount-1)
 
 ## Constructors
 
@@ -43,7 +43,7 @@ Class that represents an event emitter.
 
 #### Defined in
 
-[src/index.d.ts:16](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L16)
+[src/event-emitter.d.ts:7](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event-emitter.d.ts#L7)
 
 ## Methods
 
@@ -68,7 +68,7 @@ The result of the event.
 
 #### Defined in
 
-[src/index.d.ts:47](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L47)
+[src/event-emitter.d.ts:38](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event-emitter.d.ts#L38)
 
 ___
 
@@ -93,7 +93,7 @@ A promise that resolves with the result of the event.
 
 #### Defined in
 
-[src/index.d.ts:53](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L53)
+[src/event-emitter.d.ts:44](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event-emitter.d.ts#L44)
 
 ___
 
@@ -117,7 +117,7 @@ Returns the count of listeners that are registered to listen for the specified e
 
 #### Defined in
 
-[src/index.d.ts:75](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L75)
+[src/event-emitter.d.ts:66](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event-emitter.d.ts#L66)
 
 ___
 
@@ -141,13 +141,13 @@ Returns an array of functions that are registered to listen for the specified ev
 
 #### Defined in
 
-[src/index.d.ts:68](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L68)
+[src/event-emitter.d.ts:59](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event-emitter.d.ts#L59)
 
 ___
 
 ### off
 
-▸ **off**(`eventName`, `listener`): [`EventEmitter`](index.EventEmitter.md)
+▸ **off**(`eventName`, `listener`): [`EventEmitter`](event_emitter.EventEmitter.md)
 
 Removes a listener function from the specified event type.
 
@@ -164,19 +164,19 @@ If the listener is not a function.
 
 #### Returns
 
-[`EventEmitter`](index.EventEmitter.md)
+[`EventEmitter`](event_emitter.EventEmitter.md)
 
 The EventEmitter instance to allow chaining.
 
 #### Defined in
 
-[src/index.d.ts:41](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L41)
+[src/event-emitter.d.ts:32](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event-emitter.d.ts#L32)
 
 ___
 
 ### on
 
-▸ **on**(`eventName`, `listener`): [`EventEmitter`](index.EventEmitter.md)
+▸ **on**(`eventName`, `listener`): [`EventEmitter`](event_emitter.EventEmitter.md)
 
 Adds a listener function to the specified event type.
 
@@ -193,19 +193,19 @@ If the listener is not a function.
 
 #### Returns
 
-[`EventEmitter`](index.EventEmitter.md)
+[`EventEmitter`](event_emitter.EventEmitter.md)
 
 The EventEmitter instance to allow chaining.
 
 #### Defined in
 
-[src/index.d.ts:25](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L25)
+[src/event-emitter.d.ts:16](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event-emitter.d.ts#L16)
 
 ___
 
 ### once
 
-▸ **once**(`eventName`, `listener`): [`EventEmitter`](index.EventEmitter.md)
+▸ **once**(`eventName`, `listener`): [`EventEmitter`](event_emitter.EventEmitter.md)
 
 Adds a one-time listener function to the specified event type.
 
@@ -222,19 +222,19 @@ If the listener is not a function.
 
 #### Returns
 
-[`EventEmitter`](index.EventEmitter.md)
+[`EventEmitter`](event_emitter.EventEmitter.md)
 
 The EventEmitter instance to allow chaining.
 
 #### Defined in
 
-[src/index.d.ts:33](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L33)
+[src/event-emitter.d.ts:24](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event-emitter.d.ts#L24)
 
 ___
 
 ### removeAllListeners
 
-▸ **removeAllListeners**(`eventName?`): [`EventEmitter`](index.EventEmitter.md)
+▸ **removeAllListeners**(`eventName?`): [`EventEmitter`](event_emitter.EventEmitter.md)
 
 Removes all listeners for a specific event or all events from an event emitter.
 
@@ -246,19 +246,19 @@ Removes all listeners for a specific event or all events from an event emitter.
 
 #### Returns
 
-[`EventEmitter`](index.EventEmitter.md)
+[`EventEmitter`](event_emitter.EventEmitter.md)
 
 - The event emitter with all listeners removed.
 
 #### Defined in
 
-[src/index.d.ts:60](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L60)
+[src/event-emitter.d.ts:51](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event-emitter.d.ts#L51)
 
 ___
 
 ### setMaxListeners
 
-▸ **setMaxListeners**(`n`): [`EventEmitter`](index.EventEmitter.md)
+▸ **setMaxListeners**(`n`): [`EventEmitter`](event_emitter.EventEmitter.md)
 
 #### Parameters
 
@@ -268,11 +268,11 @@ ___
 
 #### Returns
 
-[`EventEmitter`](index.EventEmitter.md)
+[`EventEmitter`](event_emitter.EventEmitter.md)
 
 #### Defined in
 
-[src/index.d.ts:61](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L61)
+[src/event-emitter.d.ts:52](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event-emitter.d.ts#L52)
 
 ___
 
@@ -284,7 +284,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `emitter` | [`EventEmitter`](index.EventEmitter.md) |
+| `emitter` | [`EventEmitter`](event_emitter.EventEmitter.md) |
 | `eventName` | `string` |
 
 #### Returns
@@ -293,4 +293,4 @@ ___
 
 #### Defined in
 
-[src/index.d.ts:76](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L76)
+[src/event-emitter.d.ts:67](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event-emitter.d.ts#L67)

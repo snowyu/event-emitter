@@ -34,8 +34,8 @@ Creates a pipeline between two event emitters, so that any events emitted by the
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `e1` | `EventEmitter` | The first event emitter. |
-| `e2` | `EventEmitter` | The second event emitter. |
+| `e1` | [`EventEmitter`](../classes/event_emitter.EventEmitter.md) | The first event emitter. |
+| `e2` | [`EventEmitter`](../classes/event_emitter.EventEmitter.md) | The second event emitter. |
 | `...args` | `any` | - |
 
 #### Returns
@@ -46,4 +46,4 @@ Creates a pipeline between two event emitters, so that any events emitted by the
 
 #### Defined in
 
-[src/pipe-async.js:21](https://github.com/snowyu/events-ex.js/blob/892d26d/src/pipe-async.js#L21)
+[src/pipe-async.js:21](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/pipe-async.js#L21)

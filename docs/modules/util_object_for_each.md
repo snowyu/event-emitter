@@ -38,4 +38,4 @@ Renames and re-exports [forEach](util_object_for_each.md#foreach)
 
 #### Defined in
 
-[src/util/object-for-each.js:6](https://github.com/snowyu/events-ex.js/blob/892d26d/src/util/object-for-each.js#L6)
+[src/util/object-for-each.js:6](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/util/object-for-each.js#L6)

@@ -34,8 +34,8 @@ Unifies the event listeners of two event emitter objects so that they share the 
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `e1` | `EventEmitter` | The first event emitter object. |
-| `e2` | `EventEmitter` | The second event emitter object. |
+| `e1` | [`EventEmitter`](../classes/event_emitter.EventEmitter.md) | The first event emitter object. |
+| `e2` | [`EventEmitter`](../classes/event_emitter.EventEmitter.md) | The second event emitter object. |
 
 #### Returns
 
@@ -43,4 +43,4 @@ Unifies the event listeners of two event emitter objects so that they share the 
 
 #### Defined in
 
-[src/unify.js:17](https://github.com/snowyu/events-ex.js/blob/892d26d/src/unify.js#L17)
+[src/unify.js:17](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/unify.js#L17)

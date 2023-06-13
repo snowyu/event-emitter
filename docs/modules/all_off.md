@@ -22,7 +22,7 @@ Renames and re-exports [allOff](all_off.md#alloff)
 
 ### allOff
 
-▸ **allOff**(`emitter`, `type?`): `EventEmitter`
+▸ **allOff**(`emitter`, `type?`): [`EventEmitter`](../classes/event_emitter.EventEmitter.md)
 
 Removes all listeners for a specific event or all events from an event emitter.
 
@@ -30,15 +30,15 @@ Removes all listeners for a specific event or all events from an event emitter.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `emitter` | `EventEmitter` | The event emitter to remove listeners from. |
+| `emitter` | [`EventEmitter`](../classes/event_emitter.EventEmitter.md) | The event emitter to remove listeners from. |
 | `type?` | `string` | The event to remove listeners for. If not provided, all listeners for all events will be removed. |
 
 #### Returns
 
-`EventEmitter`
+[`EventEmitter`](../classes/event_emitter.EventEmitter.md)
 
 - The event emitter with all listeners removed.
 
 #### Defined in
 
-[src/all-off.js:12](https://github.com/snowyu/events-ex.js/blob/892d26d/src/all-off.js#L12)
+[src/all-off.js:12](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/all-off.js#L12)

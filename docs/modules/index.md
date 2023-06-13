@@ -6,6 +6,8 @@
 
 ### References
 
+- [Event](index.md#event)
+- [EventEmitter](index.md#eventemitter)
 - [allOff](index.md#alloff)
 - [default](index.md#default)
 - [eventable](index.md#eventable)
@@ -17,11 +19,19 @@
 - [unify](index.md#unify)
 - [wrapEventEmitter](index.md#wrapeventemitter)
 
-### Classes
-
-- [EventEmitter](../classes/index.EventEmitter.md)
-
 ## References
+
+### Event
+
+Re-exports [Event](../classes/event.Event.md)
+
+___
+
+### EventEmitter
+
+Re-exports [EventEmitter](../classes/event_emitter.EventEmitter.md)
+
+___
 
 ### allOff
 
@@ -31,7 +41,7 @@ ___
 
 ### default
 
-Renames and re-exports [EventEmitter](../classes/index.EventEmitter.md)
+Renames and re-exports [EventEmitter](../classes/event_emitter.EventEmitter.md)
 
 ___
 
@@ -49,7 +59,7 @@ ___
 
 ### methods
 
-Re-exports [methods](event_emitter.md#methods)
+Re-exports [methods](wrap_event_emitter.md#methods)
 
 ___
 
@@ -79,4 +89,4 @@ ___
 
 ### wrapEventEmitter
 
-Re-exports [wrapEventEmitter](event_emitter.md#wrapeventemitter)
+Re-exports [wrapEventEmitter](wrap_event_emitter.md#wrapeventemitter)
