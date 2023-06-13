@@ -1,1 +1,1 @@
-module.exports = require('./eventable')
+module.exports = require('./lib/eventable')
