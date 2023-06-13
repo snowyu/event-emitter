@@ -38,7 +38,7 @@
   "module": "./src/index.js",
   "type": "commonjs",
   "dependencies": {
-    "custom-ability": "^2.0.0-alpha.3",
+    "custom-ability": "^2.0.0-alpha.4",
     "util-ex": "^2.0.0-alpha.8"
   },
   "devDependencies": {
