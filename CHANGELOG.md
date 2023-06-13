@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0-alpha.2](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2023-06-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* rename src/event-emitter to src/wrap-event-emitter and extract EventEmitter from index to event-emitter
+
+### Bug Fixes
+
+* **ts:** EventEmitter not found ([9a74862](https://github.com/snowyu/events-ex.js/commit/9a748624e00417f6d7f72ea7c297650e10895d19))
+
+
+### Refactor
+
+* rename src/event-emitter to src/wrap-event-emitter and extract EventEmitter from index to event-emitter ([f06f39f](https://github.com/snowyu/events-ex.js/commit/f06f39fb809006f5e098e31bb23870fff39ec5c8))
+
 ## [2.0.0-alpha.1](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.0...v2.0.0-alpha.1) (2023-06-13)
 
 
