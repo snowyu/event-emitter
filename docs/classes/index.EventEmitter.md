@@ -43,7 +43,7 @@ Class that represents an event emitter.
 
 #### Defined in
 
-[src/index.d.ts:16](https://github.com/snowyu/events-ex.js/blob/b4aaa97/src/index.d.ts#L16)
+[src/index.d.ts:16](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L16)
 
 ## Methods
 
@@ -68,7 +68,7 @@ The result of the event.
 
 #### Defined in
 
-[src/index.d.ts:47](https://github.com/snowyu/events-ex.js/blob/b4aaa97/src/index.d.ts#L47)
+[src/index.d.ts:47](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L47)
 
 ___
 
@@ -93,7 +93,7 @@ A promise that resolves with the result of the event.
 
 #### Defined in
 
-[src/index.d.ts:53](https://github.com/snowyu/events-ex.js/blob/b4aaa97/src/index.d.ts#L53)
+[src/index.d.ts:53](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L53)
 
 ___
 
@@ -117,7 +117,7 @@ Returns the count of listeners that are registered to listen for the specified e
 
 #### Defined in
 
-[src/index.d.ts:75](https://github.com/snowyu/events-ex.js/blob/b4aaa97/src/index.d.ts#L75)
+[src/index.d.ts:75](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L75)
 
 ___
 
@@ -141,7 +141,7 @@ Returns an array of functions that are registered to listen for the specified ev
 
 #### Defined in
 
-[src/index.d.ts:68](https://github.com/snowyu/events-ex.js/blob/b4aaa97/src/index.d.ts#L68)
+[src/index.d.ts:68](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L68)
 
 ___
 
@@ -170,7 +170,7 @@ The EventEmitter instance to allow chaining.
 
 #### Defined in
 
-[src/index.d.ts:41](https://github.com/snowyu/events-ex.js/blob/b4aaa97/src/index.d.ts#L41)
+[src/index.d.ts:41](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L41)
 
 ___
 
@@ -199,7 +199,7 @@ The EventEmitter instance to allow chaining.
 
 #### Defined in
 
-[src/index.d.ts:25](https://github.com/snowyu/events-ex.js/blob/b4aaa97/src/index.d.ts#L25)
+[src/index.d.ts:25](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L25)
 
 ___
 
@@ -228,7 +228,7 @@ The EventEmitter instance to allow chaining.
 
 #### Defined in
 
-[src/index.d.ts:33](https://github.com/snowyu/events-ex.js/blob/b4aaa97/src/index.d.ts#L33)
+[src/index.d.ts:33](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L33)
 
 ___
 
@@ -252,7 +252,7 @@ Removes all listeners for a specific event or all events from an event emitter.
 
 #### Defined in
 
-[src/index.d.ts:60](https://github.com/snowyu/events-ex.js/blob/b4aaa97/src/index.d.ts#L60)
+[src/index.d.ts:60](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L60)
 
 ___
 
@@ -272,7 +272,7 @@ ___
 
 #### Defined in
 
-[src/index.d.ts:61](https://github.com/snowyu/events-ex.js/blob/b4aaa97/src/index.d.ts#L61)
+[src/index.d.ts:61](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L61)
 
 ___
 
@@ -293,4 +293,4 @@ ___
 
 #### Defined in
 
-[src/index.d.ts:76](https://github.com/snowyu/events-ex.js/blob/b4aaa97/src/index.d.ts#L76)
+[src/index.d.ts:76](https://github.com/snowyu/events-ex.js/blob/892d26d/src/index.d.ts#L76)

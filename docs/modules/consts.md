@@ -24,4 +24,4 @@
 
 #### Defined in
 
-[src/consts.js:5](https://github.com/snowyu/events-ex.js/blob/b4aaa97/src/consts.js#L5)
+[src/consts.js:5](https://github.com/snowyu/events-ex.js/blob/892d26d/src/consts.js#L5)

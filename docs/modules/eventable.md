@@ -26,6 +26,8 @@ Renames and re-exports [eventable](eventable.md#eventable)
 
 A function that adds(injects) the ability of a specified ability class to a target class.
 
+Note: Maybe the ability will be injected into the inheritance class.
+
 #### Parameters
 
 | Name | Type | Description |
@@ -42,4 +44,4 @@ A function that adds(injects) the ability of a specified ability class to a targ
 
 #### Defined in
 
-node_modules/custom-ability/lib/custom-ability.d.ts:30
+node_modules/custom-ability/lib/custom-ability.d.ts:103
