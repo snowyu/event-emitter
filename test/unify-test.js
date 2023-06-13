@@ -1,7 +1,7 @@
 import {assert} from "chai"
 
 import unify from '../src/unify'
-import ee from '../src/event-emitter'
+import ee from '../src/wrap-event-emitter'
 
 describe('unify', () => {
 	it('should unify', function() {

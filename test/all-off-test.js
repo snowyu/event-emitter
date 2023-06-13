@@ -1,6 +1,6 @@
 import {assert} from "chai";
 
-import ee from '../src/event-emitter'
+import ee from '../src/wrap-event-emitter'
 import allOff from '../src/all-off'
 
 describe('all-off', () => {

@@ -1,7 +1,7 @@
 import {assert} from "chai";
 
 import pipeAsync from '../src/pipe-async'
-import ee from '../src/event-emitter';
+import ee from '../src/wrap-event-emitter';
 
 describe('pipe-async', () => {
 

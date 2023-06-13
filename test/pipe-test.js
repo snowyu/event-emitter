@@ -1,7 +1,7 @@
 import {assert} from "chai";
 
 import pipe from '../src/pipe'
-import ee from '../src/event-emitter';
+import ee from '../src/wrap-event-emitter';
 
 describe('pipe', () => {
 	it('should pipe', () => {

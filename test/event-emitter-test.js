@@ -1,6 +1,6 @@
 import {assert} from "chai";
 
-import eventEmitter from '../src/event-emitter'
+import eventEmitter from '../src/wrap-event-emitter'
 
 function deepEqu(act, expected, msg) {
 	assert.exists(act)

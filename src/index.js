@@ -1,4 +1,4 @@
-import eventable from './eventable'
+import {EventEmitter} from './event-emitter'
 
 export * from './all-off'
 export * from './consts'
@@ -9,13 +9,6 @@ export * from './has-listeners'
 export * from './pipe'
 export * from './pipe-async'
 export * from './unify'
-
-/**
- * @class
- * @classdesc Class that represents an event emitter.
- */
-export function EventEmitter() {}
-
-eventable(EventEmitter);
+export * from './wrap-event-emitter'
 
 export default EventEmitter;

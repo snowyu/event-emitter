@@ -1,6 +1,6 @@
 import {assert} from "chai";
 
-import wrapEventEmitter from '../src/event-emitter'
+import wrapEventEmitter from '../src/wrap-event-emitter'
 
 function wait(milliseconds){
   return new Promise(resolve => {

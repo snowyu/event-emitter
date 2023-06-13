@@ -1,7 +1,7 @@
 import {assert} from "chai";
 
 import hasListeners from '../src/has-listeners'
-import ee from '../src/event-emitter';
+import ee from '../src/wrap-event-emitter';
 
 describe('hasListeners', () => {
 	it('should any listeners', () => {
