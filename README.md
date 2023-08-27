@@ -77,6 +77,7 @@ Bubbling event usage:
 import {EventEmitter, states} from 'events-ex';
 import {isObject} from 'util-ex';
 
+states.ABORT = -1
 class MyDb extends EventEmitter {
   get(key) {
     // Demo the event object bubbling usage:
@@ -98,8 +99,9 @@ db.on('getting', function(key){
       state: states.DONE,
       result: result,
     }
-  } else if (result === null) {
-    // abort default get key.
+    this.stopped = true // it will skip other listeners if true
+  } else {
+    // you can abort to get key by default.
     this.result = {state: states.ABORT};
     // this.stopped = true // it will skip other listeners if true
   }
