@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0-alpha.3](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.2...v2.0.0-alpha.3) (2023-08-27)
+
+
+### Features
+
+* add ABORT state constant ([a8b3710](https://github.com/snowyu/events-ex.js/commit/a8b3710ae7f1695263ed0bd9036db31831ed9ae0))
+
 ## [2.0.0-alpha.2](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2023-06-13)
 
 
