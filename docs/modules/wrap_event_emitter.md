@@ -30,7 +30,7 @@ Renames and re-exports [wrapEventEmitter](wrap_event_emitter.md#wrapeventemitter
 
 #### Defined in
 
-[src/wrap-event-emitter.js:6](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/wrap-event-emitter.js#L6)
+[src/wrap-event-emitter.js:6](https://github.com/snowyu/events-ex.js/blob/2b0a99d/src/wrap-event-emitter.js#L6)
 
 ## Functions
 
@@ -54,4 +54,4 @@ o or new Event instance
 
 #### Defined in
 
-[src/wrap-event-emitter.js:33](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/wrap-event-emitter.js#L33)
+[src/wrap-event-emitter.js:33](https://github.com/snowyu/events-ex.js/blob/2b0a99d/src/wrap-event-emitter.js#L33)

@@ -36,4 +36,4 @@ Renames and re-exports [validCallable](util_valid_callable.md#validcallable)
 
 #### Defined in
 
-[src/util/valid-callable.js:1](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/util/valid-callable.js#L1)
+[src/util/valid-callable.js:1](https://github.com/snowyu/events-ex.js/blob/2b0a99d/src/util/valid-callable.js#L1)

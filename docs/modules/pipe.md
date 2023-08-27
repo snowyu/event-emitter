@@ -46,4 +46,4 @@ Creates a pipeline between two event emitters, so that any events emitted by the
 
 #### Defined in
 
-[src/pipe.js:21](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/pipe.js#L21)
+[src/pipe.js:21](https://github.com/snowyu/events-ex.js/blob/2b0a99d/src/pipe.js#L21)

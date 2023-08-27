@@ -22,4 +22,4 @@ Class that represents an event emitter.
 
 #### Defined in
 
-[src/event-emitter.js:7](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event-emitter.js#L7)
+[src/event-emitter.js:7](https://github.com/snowyu/events-ex.js/blob/2b0a99d/src/event-emitter.js#L7)

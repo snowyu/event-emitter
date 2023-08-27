@@ -41,7 +41,7 @@ Event Object that contains information about the event, such as the target eleme
 
 #### Defined in
 
-[src/event.js:8](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event.js#L8)
+[src/event.js:8](https://github.com/snowyu/events-ex.js/blob/2b0a99d/src/event.js#L8)
 
 ## Properties
 
@@ -53,7 +53,7 @@ Keep your event result here if any.
 
 #### Defined in
 
-[src/event.js:38](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event.js#L38)
+[src/event.js:38](https://github.com/snowyu/events-ex.js/blob/2b0a99d/src/event.js#L38)
 
 ___
 
@@ -65,7 +65,7 @@ Whether stop the bubbling event
 
 #### Defined in
 
-[src/event.js:32](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event.js#L32)
+[src/event.js:32](https://github.com/snowyu/events-ex.js/blob/2b0a99d/src/event.js#L32)
 
 ___
 
@@ -77,7 +77,7 @@ Who trigger the event
 
 #### Defined in
 
-[src/event.js:26](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event.js#L26)
+[src/event.js:26](https://github.com/snowyu/events-ex.js/blob/2b0a99d/src/event.js#L26)
 
 ## Methods
 
@@ -95,7 +95,7 @@ The result of the event.
 
 #### Defined in
 
-[src/event.js:45](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event.js#L45)
+[src/event.js:45](https://github.com/snowyu/events-ex.js/blob/2b0a99d/src/event.js#L45)
 
 ___
 
@@ -117,4 +117,4 @@ Initializes the event with the target object.
 
 #### Defined in
 
-[src/event.js:20](https://github.com/snowyu/events-ex.js/blob/25f69f3/src/event.js#L20)
+[src/event.js:20](https://github.com/snowyu/events-ex.js/blob/2b0a99d/src/event.js#L20)
