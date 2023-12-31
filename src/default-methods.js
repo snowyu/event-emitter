@@ -264,7 +264,7 @@ function _emit(type, msg) {
   }
   // If there is no 'error' event listener then throw.
   if (!listeners && type === 'error') {
-    if (!(msg instanceof Error)) {msg = new Error(UnCAUGHT_ERR)}
+    if (!(msg instanceof Error)) {msg = new Error(msg ? UnCAUGHT_ERR + msg : UnCAUGHT_ERR)}
     throw msg
   }
   if (!listeners) {return}
