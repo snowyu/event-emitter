@@ -26,10 +26,6 @@ Renames and re-exports [unify](unify.md#unify)
 
 Unifies the event listeners of two event emitter objects so that they share the same set of listeners for each event.
 
-**`Throws`**
-
-- If either of the arguments is not an event emitter object.
-
 #### Parameters
 
 | Name | Type | Description |
@@ -41,6 +37,10 @@ Unifies the event listeners of two event emitter objects so that they share the 
 
 `void`
 
+**`Throws`**
+
+- If either of the arguments is not an event emitter object.
+
 #### Defined in
 
-[src/unify.js:17](https://github.com/snowyu/events-ex.js/blob/2b0a99d/src/unify.js#L17)
+[src/unify.js:17](https://github.com/snowyu/events-ex.js/blob/8b7be69/src/unify.js#L17)
