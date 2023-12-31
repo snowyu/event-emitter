@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0-alpha.4](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.3...v2.0.0-alpha.4) (2023-12-31)
+
+
+### Bug Fixes
+
+* add message parameter to Error object if exists ([8b7be69](https://github.com/snowyu/events-ex.js/commit/8b7be691a7ede7772d4150ae24aafe6e2d901ad4))
+
 ## [2.0.0-alpha.3](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.2...v2.0.0-alpha.3) (2023-08-27)
 
 
