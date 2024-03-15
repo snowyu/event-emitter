@@ -41,4 +41,4 @@ Removes all listeners for a specific event or all events from an event emitter.
 
 #### Defined in
 
-[src/all-off.js:12](https://github.com/snowyu/events-ex.js/blob/8b7be69/src/all-off.js#L12)
+[src/all-off.js:12](https://github.com/snowyu/events-ex.js/blob/943ef69/src/all-off.js#L12)
