@@ -36,4 +36,4 @@ Renames and re-exports [validObject](util_valid_object.md#validobject)
 
 #### Defined in
 
-[src/util/valid-object.js:3](https://github.com/snowyu/events-ex.js/blob/943ef69/src/util/valid-object.js#L3)
+[src/util/valid-object.js:3](https://github.com/snowyu/events-ex.js/blob/e575b9f/src/util/valid-object.js#L3)
