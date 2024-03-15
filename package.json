@@ -36,10 +36,9 @@
   },
   "main": "./lib/index.js",
   "module": "./src/index.js",
-  "type": "commonjs",
   "dependencies": {
-    "custom-ability": "^2.0.0-alpha.4",
-    "util-ex": "^2.0.0-alpha.8"
+    "custom-ability": "^2.0.0-alpha.5",
+    "util-ex": "^2.0.0-alpha.10"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.1",

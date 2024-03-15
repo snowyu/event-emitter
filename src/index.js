@@ -1,3 +1,4 @@
+// @sourceType: module
 import {EventEmitter} from './event-emitter'
 
 export * from './all-off'
