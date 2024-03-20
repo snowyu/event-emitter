@@ -37,4 +37,4 @@ Renames and re-exports [hasListeners](has_listeners.md#haslisteners)
 
 #### Defined in
 
-[src/has-listeners.js:10](https://github.com/snowyu/events-ex.js/blob/e575b9f/src/has-listeners.js#L10)
+[src/has-listeners.js:10](https://github.com/snowyu/events-ex.js/blob/7dce4f6/src/has-listeners.js#L10)
