@@ -108,7 +108,7 @@ export function getEventableMethods(aClass) {
         if (errs.length) {
           for (let i=0;i<errs.length;i++) {
             const it = errs[i]
-            this.emit('error', it.err, 'notify', it.listener, args)
+            this.emit('error', it.err, 'notify', r.type, it.listener, args)
           }
         }
       } finally {
@@ -141,7 +141,7 @@ export function getEventableMethods(aClass) {
         if (errs.length) {
           for (let i=0;i<errs.length;i++) {
             const it = errs[i]
-            this.emit('error', it.err, 'notify', it.listener, args)
+            this.emit('error', it.err, 'notify', r.type, it.listener, args)
           }
         }
       } finally {
@@ -295,7 +295,7 @@ function _emit(type, msg) {
   } else {
     listeners = listeners.slice()
   }
-  return {args, listeners}
+  return {type, args, listeners}
 }
 
 function _notify(listener, evt, args) {

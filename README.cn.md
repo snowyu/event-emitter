@@ -40,7 +40,7 @@ TODO: 异步事件,添加`emitAsync`方法. 没这么简单,因为要支持bubbl
   * 添加了 `listenerCount()` 类方法，以保持与 Node 事件模块的兼容性。
   * 添加了`emitAsync`方法,支持异步事件
 
-注意: 时间内部引发错误不会中断通知，但是会在通知结束时 emit 错误事件(`emit('error', error, 'notify', listener, args)`)
+注意: 时间内部引发错误不会中断通知，但是会在通知结束时 emit 错误事件(`emit('error', error, 'notify', eventName, listener, args)`)
 
 ### 安装
 

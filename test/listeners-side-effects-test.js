@@ -44,6 +44,7 @@ describe('EventEmitter', () => {
     var called = false;
     var listener
     var errType
+    var evtName
     var expectErr = new Error('FooError')
     var expectListener = ()=> {
       throw expectErr
@@ -51,9 +52,10 @@ describe('EventEmitter', () => {
 
     e.on('foo', expectListener);
 
-    e.on('error', (error, errorType, l) => {
+    e.on('error', (error, errorType, name, l) => {
       errType = errorType
       err = error
+      evtName = name
       listener = l
     });
 
@@ -62,6 +64,7 @@ describe('EventEmitter', () => {
     e.emit('foo')
     assert.equal(errType, 'notify')
     assert.equal(err, expectErr)
+    assert.equal(evtName, 'foo')
     assert.equal(listener, expectListener)
     assert.ok(called)
   });
@@ -72,6 +75,7 @@ describe('EventEmitter', () => {
     var called = false;
     var listener
     var errType
+    var evtName
     var expectErr = new Error('FooError')
     var expectListener = async ()=> {
       await wait(50);
@@ -80,9 +84,10 @@ describe('EventEmitter', () => {
 
     e.on('foo', expectListener);
 
-    e.on('error', (error, errorType, l) => {
+    e.on('error', (error, errorType, name, l) => {
       errType = errorType
       err = error
+      evtName = name
       listener = l
     });
 
@@ -91,6 +96,7 @@ describe('EventEmitter', () => {
     await e.emitAsync('foo')
     assert.equal(errType, 'notify')
     assert.equal(err, expectErr)
+    assert.equal(evtName, 'foo')
     assert.equal(listener, expectListener)
     assert.ok(called)
   });
