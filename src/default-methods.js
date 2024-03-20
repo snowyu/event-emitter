@@ -92,13 +92,24 @@ export function getEventableMethods(aClass) {
       const args = r.args
       const listeners = r.listeners
       const evt = Event(this)
+      const errs = []
       try {
         let i = 0
         let listener
         while (listener = listeners[i]){
-          _notify(listener, evt, args)
-          if (evt.stopped) {break}
+          try {
+            _notify(listener, evt, args)
+            if (evt.stopped) {break}
+          } catch(err) {
+            errs.push({err: err, listener: listener})
+          }
           ++i
+        }
+        if (errs.length) {
+          for (let i=0;i<errs.length;i++) {
+            const it = errs[i]
+            this.emit('error', it.err, 'notify', it.listener, args)
+          }
         }
       } finally {
         // eslint-disable-next-line no-unsafe-finally
@@ -117,10 +128,21 @@ export function getEventableMethods(aClass) {
       const args = r.args
       const listeners = r.listeners
       const evt = Event(this)
+      const errs = []
       try {
         for (const listener of listeners) {
-          await _notify(listener, evt, args);
-          if (evt.stopped) {break}
+          try {
+            await _notify(listener, evt, args);
+            if (evt.stopped) {break}
+          } catch(err) {
+            errs.push({err: err, listener: listener})
+          }
+        }
+        if (errs.length) {
+          for (let i=0;i<errs.length;i++) {
+            const it = errs[i]
+            this.emit('error', it.err, 'notify', it.listener, args)
+          }
         }
       } finally {
         // eslint-disable-next-line no-unsafe-finally

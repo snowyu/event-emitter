@@ -31,6 +31,7 @@ Browser-friendly enhanced event emitter [ability][Ability] and class. It's modif
   + Adds listenerCount() class method to keep compatibility with node events.
   * Adds async event emitting via `emitAsync` method.
 
+Note: The listener throw error should not broke the notification, but it will emit error(`emit('error', error, 'notify', listener, args)`) after notification.
 
 ### Installation
 

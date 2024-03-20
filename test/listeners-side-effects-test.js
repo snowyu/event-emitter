@@ -37,4 +37,65 @@ describe('EventEmitter', () => {
     assert.equal(fl[1], assert.ok);
 
   });
+
+  it('should test listeners throw error', () => {
+    var e = new EventEmitter;
+    var err;
+    var called = false;
+    var listener
+    var errType
+    var expectErr = new Error('FooError')
+    var expectListener = ()=> {
+      throw expectErr
+    }
+
+    e.on('foo', expectListener);
+
+    e.on('error', (error, errorType, l) => {
+      errType = errorType
+      err = error
+      listener = l
+    });
+
+    e.on('foo', ()=> {called = true});
+
+    e.emit('foo')
+    assert.equal(errType, 'notify')
+    assert.equal(err, expectErr)
+    assert.equal(listener, expectListener)
+    assert.ok(called)
+  });
+
+  it('should test listeners throw error async', async () => {
+    var e = new EventEmitter;
+    var err;
+    var called = false;
+    var listener
+    var errType
+    var expectErr = new Error('FooError')
+    var expectListener = async ()=> {
+      await wait(50);
+      throw expectErr
+    }
+
+    e.on('foo', expectListener);
+
+    e.on('error', (error, errorType, l) => {
+      errType = errorType
+      err = error
+      listener = l
+    });
+
+    e.on('foo', ()=> {called = true});
+
+    await e.emitAsync('foo')
+    assert.equal(errType, 'notify')
+    assert.equal(err, expectErr)
+    assert.equal(listener, expectListener)
+    assert.ok(called)
+  });
 });
+
+export async function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
