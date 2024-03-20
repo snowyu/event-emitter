@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0-alpha.7](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.6...v2.0.0-alpha.7) (2024-03-20)
+
+
+### Features
+
+* The listener throw error should not broke the notification, but it will emit error after notification. ([7dce4f6](https://github.com/snowyu/events-ex.js/commit/7dce4f68c516a0169fa4f64f3a5c5277f0c2b743))
+
 ## [2.0.0-alpha.6](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.5...v2.0.0-alpha.6) (2024-03-15)
 
 ## [2.0.0-alpha.5](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.4...v2.0.0-alpha.5) (2024-03-15)
