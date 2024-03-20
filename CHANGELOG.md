@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0-alpha.8](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.7...v2.0.0-alpha.8) (2024-03-20)
+
+
+### Features
+
+* add eventName to the notify error event ([da3be72](https://github.com/snowyu/events-ex.js/commit/da3be7238689da19589e4d3a104d57b749d8a771))
+
 ## [2.0.0-alpha.7](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.6...v2.0.0-alpha.7) (2024-03-20)
 
 
