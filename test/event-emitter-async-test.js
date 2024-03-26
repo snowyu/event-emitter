@@ -17,7 +17,7 @@ function deepEqu(act, expected, msg) {
 describe('event-emitter-async', () => {
 	it('should emit', async () => {
 		var x = wrapEventEmitter(), y, count, count2, count3, count4, test, listener1, listener2;
-		var defaultEvent = {stopped:false, result: undefined};
+		var defaultEvent = {stopped:false, result: undefined, type: 'foo'};
 		await x.emitAsync('none');
 
 		test = "Once: ";

@@ -91,7 +91,7 @@ export function getEventableMethods(aClass) {
       if (!r) {return}
       const args = r.args
       const listeners = r.listeners
-      const evt = Event(this)
+      const evt = Event(this, r.type)
       const errs = []
       try {
         let i = 0
@@ -127,7 +127,7 @@ export function getEventableMethods(aClass) {
       if (!r) {return}
       const args = r.args
       const listeners = r.listeners
-      const evt = Event(this)
+      const evt = Event(this, r.type)
       const errs = []
       try {
         for (const listener of listeners) {

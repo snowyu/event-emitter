@@ -5,19 +5,19 @@
  * @param {import('./event-emitter').EventEmitter} target - Who trigger the event
  * @returns {Event} - The new Event instance.
  */
-export function Event(target) {
+export function Event(target, type) {
   if (!(this instanceof Event)) {
-    const evt = new Event(target)
+    const evt = new Event(target, type)
     return evt
   }
-  this.init(target)
+  this.init(target, type)
 }
 
 /**
  * Initializes the event with the target object.
  * @param {import('./event-emitter').EventEmitter} target - The target object for the event.
  */
-Event.prototype.init = function(target) {
+Event.prototype.init = function(target, type) {
   /**
    * Who trigger the event
    * @type {Object}
@@ -36,6 +36,12 @@ Event.prototype.init = function(target) {
    * @public
    */
   this.result = undefined
+  /**
+   * The type of the event.
+   * @type {string}
+   * @public
+   */
+  if (type) this.type = type;
 }
 
 /**

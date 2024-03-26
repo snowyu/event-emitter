@@ -21,6 +21,7 @@ describe('EventEmitter', () => {
       times_hello_emited += 1;
       assert.equal('a', a);
       assert.equal('b', b);
+      assert.equal(this.type, 'hello')
     }
     e.on('hello', hello);
 
