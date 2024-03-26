@@ -41,7 +41,7 @@ Event.prototype.init = function(target, type) {
    * @type {string}
    * @public
    */
-  if (type) this.type = type;
+  this.type = type;
 }
 
 /**
