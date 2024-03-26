@@ -15,6 +15,7 @@
 - [result](event.Event.md#result)
 - [stopped](event.Event.md#stopped)
 - [target](event.Event.md#target)
+- [type](event.Event.md#type)
 
 ### Methods
 
@@ -25,7 +26,7 @@
 
 ### constructor
 
-• **new Event**(`target`): [`Event`](event.Event.md)
+• **new Event**(`target`, `type`): [`Event`](event.Event.md)
 
 Creates a new Event object instance that contains information about the event, such as the target element and the return value of the event.
 
@@ -34,6 +35,7 @@ Creates a new Event object instance that contains information about the event, s
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `target` | [`EventEmitter`](event_emitter.EventEmitter.md) | Who trigger the event |
+| `type` | `any` | - |
 
 #### Returns
 
@@ -47,7 +49,7 @@ Event Object that contains information about the event, such as the target eleme
 
 #### Defined in
 
-[src/event.js:8](https://github.com/snowyu/events-ex.js/blob/da3be72/src/event.js#L8)
+[src/event.js:8](https://github.com/snowyu/events-ex.js/blob/42b35e7/src/event.js#L8)
 
 ## Properties
 
@@ -59,7 +61,7 @@ Keep your event result here if any.
 
 #### Defined in
 
-[src/event.js:38](https://github.com/snowyu/events-ex.js/blob/da3be72/src/event.js#L38)
+[src/event.js:38](https://github.com/snowyu/events-ex.js/blob/42b35e7/src/event.js#L38)
 
 ___
 
@@ -71,7 +73,7 @@ Whether stop the bubbling event
 
 #### Defined in
 
-[src/event.js:32](https://github.com/snowyu/events-ex.js/blob/da3be72/src/event.js#L32)
+[src/event.js:32](https://github.com/snowyu/events-ex.js/blob/42b35e7/src/event.js#L32)
 
 ___
 
@@ -83,7 +85,17 @@ Who trigger the event
 
 #### Defined in
 
-[src/event.js:26](https://github.com/snowyu/events-ex.js/blob/da3be72/src/event.js#L26)
+[src/event.js:26](https://github.com/snowyu/events-ex.js/blob/42b35e7/src/event.js#L26)
+
+___
+
+### type
+
+• **type**: `any`
+
+#### Defined in
+
+[src/event.js:44](https://github.com/snowyu/events-ex.js/blob/42b35e7/src/event.js#L44)
 
 ## Methods
 
@@ -101,13 +113,13 @@ The result of the event.
 
 #### Defined in
 
-[src/event.js:45](https://github.com/snowyu/events-ex.js/blob/da3be72/src/event.js#L45)
+[src/event.js:51](https://github.com/snowyu/events-ex.js/blob/42b35e7/src/event.js#L51)
 
 ___
 
 ### init
 
-▸ **init**(`target`): `void`
+▸ **init**(`target`, `type`): `void`
 
 Initializes the event with the target object.
 
@@ -116,6 +128,7 @@ Initializes the event with the target object.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `target` | [`EventEmitter`](event_emitter.EventEmitter.md) | The target object for the event. |
+| `type` | `any` | - |
 
 #### Returns
 
@@ -123,4 +136,4 @@ Initializes the event with the target object.
 
 #### Defined in
 
-[src/event.js:20](https://github.com/snowyu/events-ex.js/blob/da3be72/src/event.js#L20)
+[src/event.js:20](https://github.com/snowyu/events-ex.js/blob/42b35e7/src/event.js#L20)
