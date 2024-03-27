@@ -37,4 +37,4 @@ Renames and re-exports [pad](util_string_pad.md#pad)
 
 #### Defined in
 
-[src/util/string-pad.js:8](https://github.com/snowyu/events-ex.js/blob/76f449a/src/util/string-pad.js#L8)
+[src/util/string-pad.js:8](https://github.com/snowyu/events-ex.js/blob/ccd8835/src/util/string-pad.js#L8)

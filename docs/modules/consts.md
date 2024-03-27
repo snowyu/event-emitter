@@ -25,4 +25,4 @@
 
 #### Defined in
 
-[src/consts.js:6](https://github.com/snowyu/events-ex.js/blob/76f449a/src/consts.js#L6)
+[src/consts.js:6](https://github.com/snowyu/events-ex.js/blob/ccd8835/src/consts.js#L6)
