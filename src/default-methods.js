@@ -238,7 +238,8 @@ export function getEventableMethods(aClass) {
       // not listening for removeListener, no need to emit
       if (!data.removeListener) {
         if (type == null){
-          delete this._events
+          // delete this._events
+          Object.keys(data).forEach(key => delete data[key])
         } else {
           delete data[type]
         }
@@ -251,7 +252,8 @@ export function getEventableMethods(aClass) {
           this.removeAllListeners(key)
         }
         this.removeAllListeners('removeListener')
-        delete this._events
+        // delete this._events
+        Object.keys(data).forEach(key => delete data[key])
         return this
       }
       const listeners = data[type]

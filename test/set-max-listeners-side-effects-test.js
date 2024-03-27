@@ -5,9 +5,9 @@ describe('EventEmitter', () => {
   it('should test set max listeners side-effects', () => {
     var e = new EventEmitter;
 
-    assert.equal(e._events, undefined);
+    assert.equal(Object.keys(e._events).length, 0);
     e.setMaxListeners(5);
-    assert.equal(e._events, undefined);
+    assert.equal(Object.keys(e._events).length, 0);
 
   })
 })

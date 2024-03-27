@@ -1,3 +1,4 @@
+import {defineProperty} from 'util-ex'
 import eventable from './eventable'
 
 const create = Object.create;
@@ -31,11 +32,9 @@ const base = defineProperties({}, descriptors);
  * @returns o or new Event instance
  */
 export function wrapEventEmitter(o) {
-  if (o == null) {
-    return create(base);
-  } else {
-    return defineProperties(Object(o), descriptors);
-  }
+  const result = o == null ? create(base) : defineProperties(Object(o), descriptors)
+  defineProperty(result, '_events', {})
+  return result
 };
 
 

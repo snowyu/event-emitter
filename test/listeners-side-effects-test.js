@@ -11,7 +11,7 @@ describe('EventEmitter', () => {
     fl = e.listeners('foo');
     assert.ok(Array.isArray(fl));
     assert.equal(fl.length, 0);
-    assert.deepEqual(e._events, undefined);
+    assert.deepEqual(e._events, {});
 
     e.on('foo', assert.fail);
     fl = e.listeners('foo');

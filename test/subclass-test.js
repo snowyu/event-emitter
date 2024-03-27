@@ -43,7 +43,7 @@ describe('EventEmitter', () => {
 
     assert.equal(EventEmitter.listenerCount(ee2, 'x'), 0);
     assert.equal(called, true);
-    assert.equal(myee._events, undefined);
+    assert.equal(Object.keys(myee._events).length, 0);
 
   })
 })
