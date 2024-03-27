@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0-alpha.11](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.10...v2.0.0-alpha.11) (2024-03-27)
+
+
+### Features
+
+* do not remove the _events for keep reference and EventEmitter add _events after creating ([ccd8835](https://github.com/snowyu/events-ex.js/commit/ccd88358763587884cdde64be723b0655b083bc1))
+
 ## [2.0.0-alpha.10](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.9...v2.0.0-alpha.10) (2024-03-26)
 
 
