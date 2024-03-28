@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0-alpha.12](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.11...v2.0.0-alpha.12) (2024-03-28)
+
+
+### Features
+
+* add regexp to match events for on/off ([a6fe84d](https://github.com/snowyu/events-ex.js/commit/a6fe84d582a17f95717359a5bd88d4cfed2ddb22))
+
 ## [2.0.0-alpha.11](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.10...v2.0.0-alpha.11) (2024-03-27)
 
 
