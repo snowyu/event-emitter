@@ -9,3 +9,5 @@ export const states = {
   STOPPED,
   ABORT,
 }
+
+export const RegExpEventSymbol = typeof Symbol === 'function' ? Symbol('RegExpEvent') : '@@RegExpEvent'

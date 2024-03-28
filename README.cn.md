@@ -17,7 +17,8 @@ TODO: 异步事件,添加`emitAsync`方法. 没这么简单,因为要支持bubbl
 * 尽最大可能性与[node events][Node Events] and [event-emitter][event-emitter]保持兼容
 * 更强大的 event-able [能力][Ability]
 * 可挂载的事件系统, 用于更好地控制事件处理
-* 支持异步事件通过 `emitAsync` 方法.
+* 支持异步事件通过 `emitAsync` 方法,该方法会等待所有异步`listeners`处理完毕后返回结果
+* 支持正则表达式匹配订阅事件
 
 ### 区别
 
@@ -27,6 +28,7 @@ TODO: 异步事件,添加`emitAsync`方法. 没这么简单,因为要支持bubbl
       * `result` 属性: 可选, 如果设置,则将该结果返回到事件发射器(`Event Emitter`)。
       * `stopped` 属性: 可选, 如果设置为 `true`，则会阻止剩余的监听器被执行。
       * `target`属性: 事件发射器对象,原本的`this`
+      * `type`属性: 触发的事件类型名称
     * **`改变`**: `emit` 方法返回监听器回调函数的结果而不是成功状态。
     * **`改变`**: 监听器回调函数的 `this` 对象是 `Event Object` 事件对象而不是事件发射器对象。
       * 事件发射器对象被放入 `Event` 对象的 `target` 属性中。
@@ -79,7 +81,12 @@ my.on('event', function() {
   console.log('event occur');
 });
 
+my.on(/^event/, function() {
+  console.log('regexp match multi events');
+});
+
 my.emit('event');
+my.emit('event1');
 ```
 
 事件冒泡机制的使用:

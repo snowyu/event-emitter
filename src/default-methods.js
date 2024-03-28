@@ -1,9 +1,29 @@
-import {defineProperty, isArray, isFunction, isNumber, isObject, isUndefined} from 'util-ex'
+import {defineProperty, isArray, isFunction, isNumber, isObject, isRegExp as _isRegExp, isUndefined} from 'util-ex'
+import {RegExpEventSymbol} from './consts'
 import {Event} from './event';
 
 const create          = Object.create
 const UnCAUGHT_ERR    = "Uncaught, unspecified 'error' event."
 const slice           = Array.prototype.slice
+
+function isRegExpStr(value) {
+  const result = typeof value === 'string' && value.length > 2 && value[0] === '/' && value.lastIndexOf('/') > 0
+  return result
+}
+
+function isRegExp(value) {
+  const result = isRegExpStr(value)
+  return result || _isRegExp(value)
+}
+
+function toRegExp(value) {
+  if (typeof value === 'string' && value.length > 2 && value[0] === '/') {
+    const i = value.lastIndexOf('/')
+    const source = value.slice(1, i)
+    const flags = value.slice(i+1)
+    return new RegExp(source, flags)
+  }
+}
 
 export function getEventableMethods(aClass) {
   return {
@@ -27,6 +47,9 @@ export function getEventableMethods(aClass) {
       // adding it to the listeners, first emit 'newListener'.
       if (data.newListener) {
         this.emit('newListener', type, isFunction(listener.listener)? listener.listener:listener)
+      }
+      if (isRegExp(type)) {
+        data = data[RegExpEventSymbol] || (data[RegExpEventSymbol] = create(null))
       }
       if  (!data[type]) {
         data[type] = listener
@@ -161,30 +184,42 @@ export function getEventableMethods(aClass) {
     },
 
     listeners(type) {
-      const data = this._events
-      let result
-      if (!(data && data[type])){
-        result = []
-      } else if (isFunction(data[type])) {
-        result = [data[type]]
-      } else {
-        result = data[type].slice()
+      let data = this._events
+      let result = []
+      if (data) {
+        if (isRegExp(type) && data[RegExpEventSymbol]) {
+          data = data[RegExpEventSymbol]
+        }
+        const listener = data[type]
+        if (listener) {
+          if (isFunction(listener)) {
+            result = [listener]
+          } else {
+            result = listener.slice()
+          }
+        }
       }
       return result
     },
 
     listenerCount(emitter, type) {
-      if (typeof emitter === 'string')
+      if (typeof emitter === 'string' || _isRegExp(emitter))
         type = emitter
         emitter = this
-      const data = emitter._events
-      let result
-      if (!(data && data[type])){
-        result = 0
-      } else if (isFunction(data[type])) {
-        result = 1
-      } else {
-        result = data[type].length
+      let data = emitter._events
+      let result = 0
+      if (data) {
+        if (isRegExp(type) && data[RegExpEventSymbol]) {
+          data = data[RegExpEventSymbol]
+        }
+        const listener = data[type]
+        if (listener) {
+          if (isFunction(listener)) {
+            result = 1
+          } else {
+            result = listener.length
+          }
+        }
       }
       return result
     },
@@ -199,12 +234,16 @@ export function getEventableMethods(aClass) {
     off(type, listener) {
       if (!isFunction(listener)) {throw new TypeError(listener + ' is not a function')}
       if (!this.hasOwnProperty('_events')) {return this}
-      const data = this._events
+      let data = this._events
+      const  hasRemover = data.removeListener
+      if (isRegExp(type) && data[RegExpEventSymbol]) {
+        data = data[RegExpEventSymbol]
+      }
       if (!data[type]) {return this}
       const listeners = data[type]
       if ((listeners === listener) || (listeners.listener === listener)) {
         delete data[type]
-        if (data.removeListener) {this.emit('removeListener', type, listener)}
+        if (hasRemover) {this.emit('removeListener', type, listener)}
       } else if (isObject(listeners)) {
         let i = listeners.length
         while (--i >= 0) {
@@ -221,7 +260,7 @@ export function getEventableMethods(aClass) {
         } else {
           listeners.splice(i, 1)
         }
-        if (data.removeListener) {this.emit('removeListener', type, listener)}
+        if (hasRemover) {this.emit('removeListener', type, listener)}
       }
       return this
     },
@@ -234,13 +273,18 @@ export function getEventableMethods(aClass) {
      */
     removeAllListeners(type) {
       if (!this.hasOwnProperty('_events')) {return this}
-      const data = this._events
+      let data = this._events
+      const regExpEvents = data[RegExpEventSymbol]
       // not listening for removeListener, no need to emit
       if (!data.removeListener) {
         if (type == null){
           // delete this._events
           Object.keys(data).forEach(key => delete data[key])
+          if (regExpEvents) {delete data[RegExpEventSymbol]}
         } else {
+          if (isRegExp(type) && regExpEvents) {
+            data = regExpEvents
+          }
           delete data[type]
         }
         return this
@@ -248,13 +292,22 @@ export function getEventableMethods(aClass) {
       // emit removeListener for all listeners on all events
       if (type == null) {
         for (const key in data) {
-          if (key === 'removeListener') {continue}
+          if (key === 'removeListener' || key === RegExpEventSymbol) {continue}
           this.removeAllListeners(key)
+        }
+        if (regExpEvents) {
+          for (const key in regExpEvents) {
+            this.removeAllListeners(toRegExp(key))
+          }
         }
         this.removeAllListeners('removeListener')
         // delete this._events
-        Object.keys(data).forEach(key => delete data[key])
+        // Object.keys(data).forEach(key => delete data[key])
+        if (regExpEvents) {delete data[RegExpEventSymbol]}
         return this
+      }
+      if ( isRegExp(type) && regExpEvents) {
+        data = regExpEvents
       }
       const listeners = data[type]
       if (isFunction(listeners)){
@@ -290,6 +343,24 @@ function _emit(type, msg) {
   if (!listeners && type === 'error') {
     if (!(msg instanceof Error)) {msg = new Error(msg ? UnCAUGHT_ERR + msg : UnCAUGHT_ERR)}
     throw msg
+  }
+  const regExpEvents = data[RegExpEventSymbol]
+  if (regExpEvents) {
+    const matched = []
+    for (let key in regExpEvents) {
+      key = toRegExp(key)
+      if (key && key.test(type)) {
+        const listener = regExpEvents[key]
+        if (isArray(listener)) {
+          matched.push.apply(matched, listener)
+        } else {
+          matched.push(listener)
+        }
+      }
+    }
+    if (matched.length) {
+      listeners = listeners ? !isObject(listeners) ? [listeners].concat(matched) : listeners.concat(matched) : matched
+    }
   }
   if (!listeners) {return}
   if (!isObject(listeners)) {
