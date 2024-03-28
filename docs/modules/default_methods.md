@@ -48,4 +48,4 @@ Renames and re-exports [getEventableMethods](default_methods.md#geteventablemeth
 
 #### Defined in
 
-[src/default-methods.js:28](https://github.com/snowyu/events-ex.js/blob/a6fe84d/src/default-methods.js#L28)
+[src/default-methods.js:28](https://github.com/snowyu/events-ex.js/blob/ca80c32/src/default-methods.js#L28)
