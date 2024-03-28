@@ -8,8 +8,10 @@ Browser-friendly enhanced event emitter [ability][Ability] and class. It's modif
 
 * Rewrite of the core architecture for improved performance and more powerful event-able ability
 * keep most compatible with [node events](nodejs.org/api/events.html) and [event-emitter][event-emitter]
-* Hookable event system for more control over event handling
-* Supports async event emitting via `emitAsync` method.
+* Supports bubbling and interruption
+  * Hook-able event system for more control over event handling
+* Supports async event emitting via `emitAsync` method which will wait for all async listeners to complete before returning.
+* Subscribe events with regular expression
 
 ### Differences
 
@@ -19,6 +21,7 @@ Browser-friendly enhanced event emitter [ability][Ability] and class. It's modif
       * `result`: If set, the result is returned to the `Event Emitter`.
       * `stopped`: If set to `true`, it prevents the remaining listeners from being executed.
       * `target`: The `Event Emitter` object, which was originally the `this` object.
+      * `type`: triggered event type(name).
     * **`broken change`**: The `emit` return the result of listeners's callback function instead of the successful state.
     * **`broken change`**: The `this` object of listeners' callback function is the `Event` Object instead of the emitter object.
       * The emitter object is put into the `target` property of the `Event` Object.
@@ -70,7 +73,12 @@ my.on('event', function() {
   console.log('event occur');
 });
 
+my.on(/^event/, function() {
+  console.log('regexp match multi events');
+});
+
 my.emit('event');
+my.emit('event1');
 ```
 
 Bubbling event usage:

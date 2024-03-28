@@ -8,6 +8,7 @@
 
 - [Event](index.md#event)
 - [EventEmitter](index.md#eventemitter)
+- [RegExpEventSymbol](index.md#regexpeventsymbol)
 - [allOff](index.md#alloff)
 - [default](index.md#default)
 - [eventable](index.md#eventable)
@@ -30,6 +31,12 @@ ___
 ### EventEmitter
 
 Re-exports [EventEmitter](../classes/event_emitter.EventEmitter.md)
+
+___
+
+### RegExpEventSymbol
+
+Re-exports [RegExpEventSymbol](consts.md#regexpeventsymbol)
 
 ___
 

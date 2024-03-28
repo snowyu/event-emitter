@@ -6,9 +6,20 @@
 
 ### Variables
 
+- [RegExpEventSymbol](consts.md#regexpeventsymbol)
 - [states](consts.md#states)
 
 ## Variables
+
+### RegExpEventSymbol
+
+• `Const` **RegExpEventSymbol**: `symbol` \| ``"@@RegExpEvent"``
+
+#### Defined in
+
+[src/consts.js:13](https://github.com/snowyu/events-ex.js/blob/a6fe84d/src/consts.js#L13)
+
+___
 
 ### states
 
@@ -25,4 +36,4 @@
 
 #### Defined in
 
-[src/consts.js:6](https://github.com/snowyu/events-ex.js/blob/ccd8835/src/consts.js#L6)
+[src/consts.js:6](https://github.com/snowyu/events-ex.js/blob/a6fe84d/src/consts.js#L6)

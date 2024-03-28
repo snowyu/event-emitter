@@ -38,7 +38,7 @@ Renames and re-exports [getEventableMethods](default_methods.md#geteventablemeth
 | :------ | :------ |
 | `emit` | (...`args`: `any`) => `any` |
 | `emitAsync` | (...`args`: `any`) => `Promise`\<`any`\> |
-| `listenerCount` | (`emitter`: `any`, `type`: `any`) => `any` |
+| `listenerCount` | (`emitter`: `any`, `type`: `any`) => `number` |
 | `listeners` | (`type`: `any`) => `any` |
 | `off` | (`type`: `string`, `listener`: `Function`) => [`EventEmitter`](../classes/event_emitter.EventEmitter.md) |
 | `on` | (`type`: `string`, `listener`: `Function`) => [`EventEmitter`](../classes/event_emitter.EventEmitter.md) |
@@ -48,4 +48,4 @@ Renames and re-exports [getEventableMethods](default_methods.md#geteventablemeth
 
 #### Defined in
 
-[src/default-methods.js:8](https://github.com/snowyu/events-ex.js/blob/ccd8835/src/default-methods.js#L8)
+[src/default-methods.js:28](https://github.com/snowyu/events-ex.js/blob/a6fe84d/src/default-methods.js#L28)
