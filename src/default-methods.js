@@ -344,7 +344,7 @@ function _emit(type, msg) {
     if (!(msg instanceof Error)) {msg = new Error(msg ? UnCAUGHT_ERR + msg : UnCAUGHT_ERR)}
     throw msg
   }
-  const regExpEvents = data[RegExpEventSymbol]
+  const regExpEvents = data && data[RegExpEventSymbol]
   if (regExpEvents) {
     const matched = []
     for (let key in regExpEvents) {

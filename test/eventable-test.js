@@ -86,6 +86,7 @@ describe('eventable', () => {
     my.exec();
     assert.equal(oldExec, true, 'should execute the original func');
     assert.equal(newExec, true, 'should execute the new func');
+    my.emit('none')
   });
 
   it('should not inject methods twice', function(){
