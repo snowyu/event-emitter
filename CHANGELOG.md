@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0-alpha.13](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.12...v2.0.0-alpha.13) (2024-03-28)
+
+
+### Bug Fixes
+
+* can not emit if no any listeners ([ca80c32](https://github.com/snowyu/events-ex.js/commit/ca80c329a02c8408320acf9134f00b6121f39287))
+
 ## [2.0.0-alpha.12](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.11...v2.0.0-alpha.12) (2024-03-28)
 
 
