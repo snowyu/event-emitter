@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0-alpha.14](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.13...v2.0.0-alpha.14) (2024-03-29)
+
+
+### Refactor
+
+* extract the isRegExpStr and toRegExp to util-ex ([706994b](https://github.com/snowyu/events-ex.js/commit/706994b76036cbaf4650b12dde673508d8d74c5d))
+
 ## [2.0.0-alpha.13](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.12...v2.0.0-alpha.13) (2024-03-28)
 
 
