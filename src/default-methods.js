@@ -1,4 +1,4 @@
-import {defineProperty, isArray, isFunction, isNumber, isObject, isRegExp as _isRegExp, isUndefined} from 'util-ex'
+import {defineProperty, isArray, isFunction, isNumber, isObject, isRegExp as _isRegExp, isUndefined, isRegExpStr, toRegExp } from 'util-ex'
 import {RegExpEventSymbol} from './consts'
 import {Event} from './event';
 
@@ -6,23 +6,9 @@ const create          = Object.create
 const UnCAUGHT_ERR    = "Uncaught, unspecified 'error' event."
 const slice           = Array.prototype.slice
 
-function isRegExpStr(value) {
-  const result = typeof value === 'string' && value.length > 2 && value[0] === '/' && value.lastIndexOf('/') > 0
-  return result
-}
-
 function isRegExp(value) {
   const result = isRegExpStr(value)
   return result || _isRegExp(value)
-}
-
-function toRegExp(value) {
-  if (typeof value === 'string' && value.length > 2 && value[0] === '/') {
-    const i = value.lastIndexOf('/')
-    const source = value.slice(1, i)
-    const flags = value.slice(i+1)
-    return new RegExp(source, flags)
-  }
 }
 
 export function getEventableMethods(aClass) {
