@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0-alpha.15](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.14...v2.0.0-alpha.15) (2024-04-05)
+
+
+### Bug Fixes
+
+* **ts:** add typescript declaration for RegExp to listen ([ccda83d](https://github.com/snowyu/events-ex.js/commit/ccda83d9385b9dc16382fce7d0d9f9d0ebe275ed))
+
 ## [2.0.0-alpha.14](https://github.com/snowyu/events-ex.js/compare/v2.0.0-alpha.13...v2.0.0-alpha.14) (2024-03-29)
 
 
