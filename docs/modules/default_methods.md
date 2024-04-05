@@ -40,12 +40,12 @@ Renames and re-exports [getEventableMethods](default_methods.md#geteventablemeth
 | `emitAsync` | (...`args`: `any`) => `Promise`\<`any`\> |
 | `listenerCount` | (`emitter`: `any`, `type`: `any`) => `number` |
 | `listeners` | (`type`: `any`) => `any` |
-| `off` | (`type`: `string`, `listener`: `Function`) => [`EventEmitter`](../classes/event_emitter.EventEmitter.md) |
-| `on` | (`type`: `string`, `listener`: `Function`) => [`EventEmitter`](../classes/event_emitter.EventEmitter.md) |
-| `once` | (`type`: `string`, `listener`: `Function`) => [`EventEmitter`](../classes/event_emitter.EventEmitter.md) |
-| `removeAllListeners` | (`type`: `string`) => [`EventEmitter`](../classes/event_emitter.EventEmitter.md) |
-| `setMaxListeners` | (`n`: `any`) => \{ on(type: string, listener: Function): EventEmitter; once(type: string, listener: Function): EventEmitter; emit(...args: any[]): any; ... 5 more ...; removeAllListeners(type: string): EventEmitter; } |
+| `off` | (`type`: `string` \| `RegExp`, `listener`: `Function`) => [`EventEmitter`](../classes/event_emitter.EventEmitter.md) |
+| `on` | (`type`: `string` \| `RegExp`, `listener`: `Function`) => [`EventEmitter`](../classes/event_emitter.EventEmitter.md) |
+| `once` | (`type`: `string` \| `RegExp`, `listener`: `Function`) => [`EventEmitter`](../classes/event_emitter.EventEmitter.md) |
+| `removeAllListeners` | (`type`: `string` \| `RegExp`) => [`EventEmitter`](../classes/event_emitter.EventEmitter.md) |
+| `setMaxListeners` | (`n`: `any`) => \{ on(type: string \| RegExp, listener: Function): EventEmitter; once(type: string \| RegExp, listener: Function): EventEmitter; ... 6 more ...; removeAllListeners(type: string \| RegExp): EventEmitter; } |
 
 #### Defined in
 
-[src/default-methods.js:14](https://github.com/snowyu/events-ex.js/blob/706994b/src/default-methods.js#L14)
+[src/default-methods.js:14](https://github.com/snowyu/events-ex.js/blob/ccda83d/src/default-methods.js#L14)

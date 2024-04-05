@@ -47,7 +47,7 @@ Class that represents an event emitter.
 
 #### Defined in
 
-[src/event-emitter.d.ts:7](https://github.com/snowyu/events-ex.js/blob/706994b/src/event-emitter.d.ts#L7)
+[src/event-emitter.d.ts:7](https://github.com/snowyu/events-ex.js/blob/ccda83d/src/event-emitter.d.ts#L7)
 
 ## Methods
 
@@ -72,7 +72,7 @@ The result of the event.
 
 #### Defined in
 
-[src/event-emitter.d.ts:38](https://github.com/snowyu/events-ex.js/blob/706994b/src/event-emitter.d.ts#L38)
+[src/event-emitter.d.ts:38](https://github.com/snowyu/events-ex.js/blob/ccda83d/src/event-emitter.d.ts#L38)
 
 ___
 
@@ -97,7 +97,7 @@ A promise that resolves with the result of the event.
 
 #### Defined in
 
-[src/event-emitter.d.ts:44](https://github.com/snowyu/events-ex.js/blob/706994b/src/event-emitter.d.ts#L44)
+[src/event-emitter.d.ts:44](https://github.com/snowyu/events-ex.js/blob/ccda83d/src/event-emitter.d.ts#L44)
 
 ___
 
@@ -111,7 +111,7 @@ Returns the count of listeners that are registered to listen for the specified e
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `eventName` | `string` | The name of the event to get the listeners for. |
+| `eventName` | `string` \| `RegExp` | The name of the event to get the listeners for. |
 
 #### Returns
 
@@ -121,7 +121,7 @@ Returns the count of listeners that are registered to listen for the specified e
 
 #### Defined in
 
-[src/event-emitter.d.ts:66](https://github.com/snowyu/events-ex.js/blob/706994b/src/event-emitter.d.ts#L66)
+[src/event-emitter.d.ts:66](https://github.com/snowyu/events-ex.js/blob/ccda83d/src/event-emitter.d.ts#L66)
 
 ___
 
@@ -135,7 +135,7 @@ Returns an array of functions that are registered to listen for the specified ev
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `eventName` | `string` | The name of the event to get the listeners for. |
+| `eventName` | `string` \| `RegExp` | The name of the event to get the listeners for. |
 
 #### Returns
 
@@ -145,7 +145,7 @@ Returns an array of functions that are registered to listen for the specified ev
 
 #### Defined in
 
-[src/event-emitter.d.ts:59](https://github.com/snowyu/events-ex.js/blob/706994b/src/event-emitter.d.ts#L59)
+[src/event-emitter.d.ts:59](https://github.com/snowyu/events-ex.js/blob/ccda83d/src/event-emitter.d.ts#L59)
 
 ___
 
@@ -159,7 +159,7 @@ Removes a listener function from the specified event type.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `eventName` | `string` | - |
+| `eventName` | `string` \| `RegExp` | - |
 | `listener` | `Function` | The listener function to be removed. |
 
 #### Returns
@@ -174,7 +174,7 @@ If the listener is not a function.
 
 #### Defined in
 
-[src/event-emitter.d.ts:32](https://github.com/snowyu/events-ex.js/blob/706994b/src/event-emitter.d.ts#L32)
+[src/event-emitter.d.ts:32](https://github.com/snowyu/events-ex.js/blob/ccda83d/src/event-emitter.d.ts#L32)
 
 ___
 
@@ -188,7 +188,7 @@ Adds a listener function to the specified event type.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `eventName` | `string` | - |
+| `eventName` | `string` \| `RegExp` | - |
 | `listener` | `Function` | The listener function to be called when the event is emitted. |
 
 #### Returns
@@ -203,7 +203,7 @@ If the listener is not a function.
 
 #### Defined in
 
-[src/event-emitter.d.ts:16](https://github.com/snowyu/events-ex.js/blob/706994b/src/event-emitter.d.ts#L16)
+[src/event-emitter.d.ts:16](https://github.com/snowyu/events-ex.js/blob/ccda83d/src/event-emitter.d.ts#L16)
 
 ___
 
@@ -217,7 +217,7 @@ Adds a one-time listener function to the specified event type.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `eventName` | `string` | - |
+| `eventName` | `string` \| `RegExp` | - |
 | `listener` | `Function` | The listener function to be called once when the event is emitted. |
 
 #### Returns
@@ -232,7 +232,7 @@ If the listener is not a function.
 
 #### Defined in
 
-[src/event-emitter.d.ts:24](https://github.com/snowyu/events-ex.js/blob/706994b/src/event-emitter.d.ts#L24)
+[src/event-emitter.d.ts:24](https://github.com/snowyu/events-ex.js/blob/ccda83d/src/event-emitter.d.ts#L24)
 
 ___
 
@@ -246,7 +246,7 @@ Removes all listeners for a specific event or all events from an event emitter.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `eventName?` | `string` | The event to remove listeners for. If not provided, all listeners for all events will be removed. |
+| `eventName?` | `string` \| `RegExp` | The event to remove listeners for. If not provided, all listeners for all events will be removed. |
 
 #### Returns
 
@@ -256,7 +256,7 @@ Removes all listeners for a specific event or all events from an event emitter.
 
 #### Defined in
 
-[src/event-emitter.d.ts:51](https://github.com/snowyu/events-ex.js/blob/706994b/src/event-emitter.d.ts#L51)
+[src/event-emitter.d.ts:51](https://github.com/snowyu/events-ex.js/blob/ccda83d/src/event-emitter.d.ts#L51)
 
 ___
 
@@ -276,7 +276,7 @@ ___
 
 #### Defined in
 
-[src/event-emitter.d.ts:52](https://github.com/snowyu/events-ex.js/blob/706994b/src/event-emitter.d.ts#L52)
+[src/event-emitter.d.ts:52](https://github.com/snowyu/events-ex.js/blob/ccda83d/src/event-emitter.d.ts#L52)
 
 ___
 
@@ -284,17 +284,23 @@ ___
 
 ▸ **listenerCount**(`emitter`, `eventName`): `number`
 
+Returns the count of listeners that are registered to listen for the specified event.
+
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `emitter` | [`EventEmitter`](event_emitter.EventEmitter.md) |
-| `eventName` | `string` |
+| `eventName` | `string` \| `RegExp` |
 
 #### Returns
 
 `number`
 
+**`Deprecated`**
+
+use emitter.listenerCount instead
+
 #### Defined in
 
-[src/event-emitter.d.ts:67](https://github.com/snowyu/events-ex.js/blob/706994b/src/event-emitter.d.ts#L67)
+[src/event-emitter.d.ts:74](https://github.com/snowyu/events-ex.js/blob/ccda83d/src/event-emitter.d.ts#L74)
