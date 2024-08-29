@@ -22,13 +22,13 @@ Renames and re-exports [eventable](eventable.md#eventable)
 
 ### eventable
 
-▸ **eventable**(`targetClass`, `options?`): `Function`
+▸ **eventable**(`targetClass?`, `options?`): `Function`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `targetClass` | `Function` |
+| `targetClass?` | `Function` |
 | `options?` | `AbilityOptions` |
 
 #### Returns
@@ -37,4 +37,4 @@ Renames and re-exports [eventable](eventable.md#eventable)
 
 #### Defined in
 
-node_modules/custom-ability/lib/custom-ability.d.ts:27
+node_modules/custom-ability/lib/custom-ability.d.ts:28
