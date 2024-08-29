@@ -37,8 +37,8 @@
   "main": "./lib/index.js",
   "module": "./src/index.js",
   "dependencies": {
-    "custom-ability": "^2.0.0-alpha.6",
-    "util-ex": "^2.0.0-alpha.11"
+    "custom-ability": "^2.0.0",
+    "util-ex": "^2.0.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.1",
